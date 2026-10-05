@@ -46,9 +46,9 @@
         .tr-ledger-year{font-size:.75rem;color:var(--text-muted);font-weight:800;text-transform:uppercase;pointer-events:none}
         .tr-ledger-units{font-size:1.15rem;color:var(--accent-green);font-weight:900;margin-top:4px;pointer-events:none}
         
-        .ncaaf-tracker-container{margin-top:16px;border:1px solid var(--border-color);border-radius:12px;background:rgba(0,0,0,0.2)}
+        .ncaaf-tracker-container{margin-top:16px;border:1px solid var(--border-color);border-radius:12px;background:rgba(0,0,0,0.2);max-height:850px;overflow-y:auto}
         .ncaaf-table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}
-        .ncaaf-table th{background:rgba(255,255,255,0.04);color:var(--text-muted);padding:12px;text-transform:uppercase;font-weight:800;border-bottom:1px solid var(--border-color)}
+        .ncaaf-table th{position:sticky;top:0;background:#111318;color:var(--text-muted);padding:12px;text-transform:uppercase;font-weight:800;border-bottom:1px solid var(--border-color);z-index:2}
         .ncaaf-table td{padding:12px;border-bottom:1px solid rgba(255,255,255,0.03);color:#d1d5db;white-space:nowrap}
         .ncaaf-table tr:hover{background:rgba(255,255,255,0.02)}
         .tag-win{color:var(--accent-green);font-weight:900}
@@ -107,7 +107,7 @@
             .picks-grid{grid-template-columns:1fr!important;gap:8px}
             .recent-pick-item{padding:12px}
 
-            .ncaaf-tracker-container{background:transparent;border:none}
+            .ncaaf-tracker-container{background:transparent;border:none;max-height:none}
             .ncaaf-table, .ncaaf-table tbody, .ncaaf-table tr, .ncaaf-table td{display:block;width:100%;box-sizing:border-box}
             .ncaaf-table thead{display:none}
             .ncaaf-table tr{background:rgba(17,19,24,0.9);border:1px solid var(--border-color);border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
@@ -197,6 +197,7 @@
                 </div>
             </div>
 
+            <!-- ALL SPORTS LEDGER PANEL -->
             <div id="tab-2026-allsports" class="ledger-tab-panel ncaaf-tracker-container" style="display: block;">
                 <table class="ncaaf-table">
                     <thead>
@@ -233,6 +234,7 @@
                 </table>
             </div>
 
+            <!-- 2026 NCAAF PANEL -->
             <div id="tab-2026-ncaaf" class="ledger-tab-panel ncaaf-tracker-container" style="display: none;">
                 <table class="ncaaf-table">
                     <thead>
@@ -250,6 +252,7 @@
                 </table>
             </div>
 
+            <!-- 2026 NFL PANEL -->
             <div id="tab-2026-nfl" class="ledger-tab-panel ncaaf-tracker-container" style="display: none;">
                 <table class="ncaaf-table">
                     <thead>
@@ -273,6 +276,7 @@
                 </table>
             </div>
 
+            <!-- ARCHIVE PANELS -->
             <div id="tab-2025" class="ledger-tab-panel ncaaf-tracker-container" style="display: none; padding: 24px; color: #ffffff;">
                 <h4 style="margin: 0 0 10px 0; font-size: 1.1rem; color: var(--accent-green);">2025 Verified Historical Performance Ledger</h4>
                 <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Full year verified net profit yield across MLB, NFL, NCAAF, NBA, and UFC: <strong style="color: #ffffff;">+214.40 Units</strong> (58.1% Overall Win Rate).</p>
