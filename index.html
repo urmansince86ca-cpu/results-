@@ -875,5 +875,27 @@
             clock();setInterval(clock,1000);document.addEventListener('visibilitychange',function(){if(!document.hidden)clock();});
         }());
     </script>
+
+<style>
+.ncaaf-tracker-container{max-height:none!important;overflow-x:auto}
+.feed-container{max-height:none!important;overflow-y:visible!important}
+html.pp-embedded,html.pp-embedded body{min-height:0!important;height:auto!important}
+</style>
+<script>
+(function(){
+if(window.parent===window)return;
+document.documentElement.classList.add('pp-embedded');
+var lastHeight=0,scheduled=false;
+function reportHeight(){scheduled=false;var height=Math.ceil(Math.max(document.body.getBoundingClientRect().height,document.body.scrollHeight))+4;if(height===lastHeight||height<100)return;lastHeight=height;window.parent.postMessage({type:'professors-results-height',height:height},'*');}
+function scheduleReport(){if(scheduled)return;scheduled=true;requestAnimationFrame(reportHeight);}
+if('ResizeObserver' in window)new ResizeObserver(scheduleReport).observe(document.body);
+window.addEventListener('load',scheduleReport);
+window.addEventListener('resize',scheduleReport);
+document.addEventListener('load',scheduleReport,true);
+window.addEventListener('message',function(event){if(event.source!==window.parent)return;if(event.origin!=='https://professorspicks.com'&&event.origin!=='https://www.professorspicks.com')return;if(event.data&&event.data.type==='professors-results-measure'){lastHeight=0;scheduleReport();}});
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(scheduleReport);
+scheduleReport();
+})();
+</script>
 </body>
 </html>
