@@ -259,4 +259,88 @@ scheduleReport();
 .chart-svg text{fill:#526359}.chart-svg line{stroke:#d8e4dc}.chart-svg path[stroke="#00ff88"],.chart-svg circle[fill="#00ff88"]{stroke:#00864b}.chart-svg circle[fill="#00ff88"]{fill:#00864b}.chart-svg path[stroke="#ff6464"]{stroke:#b42332}.chart-svg circle[fill="#ff6464"]{fill:#b42332}
 a:focus-visible,button:focus-visible,select:focus-visible{outline-color:#00864b}
 @media(max-width:900px){.ncaaf-table tr{background:#fff;box-shadow:0 3px 12px #15372108}}
-</style></body></html>
+</style>
+    <section id="pending-picks">
+  <h2>October 18 — Pending Picks</h2>
+  <div class="pp-pending-list">
+    <article>
+      <strong>Baltimore Ravens vs. Cleveland Browns</strong>
+      <span>1u · Pending</span>
+    </article>
+    <article>
+      <strong>Buffalo Bills vs. Las Vegas Raiders</strong>
+      <span>1u · Pending</span>
+    </article>
+    <article>
+      <strong>Tennessee Titans vs. Indianapolis Colts</strong>
+      <span>1u · Pending</span>
+    </article>
+    <article>
+      <strong>Chicago Bears vs. Atlanta Falcons</strong>
+      <span>1u · Pending</span>
+    </article>
+    <article>
+      <strong>New York Jets vs. New England Patriots</strong>
+      <span>1u · Pending</span>
+    </article>
+    <article class="pp-free-pick">
+      <div>
+        <small>FREE PICK</small>
+        <strong>Los Angeles Chargers vs. Kansas City Chiefs</strong>
+        <p>Over 41.5 · −112</p>
+      </div>
+      <span>1u · Pending</span>
+    </article>
+  </div>
+</section>
+
+<style>
+#pending-picks{
+  max-width:1168px;margin:20px auto;padding:20px;
+  background:#fff;border:1px solid #d8e4dc;
+  border-radius:14px;color:#15231c
+}
+#pending-picks h2{
+  margin:0 0 16px;padding:0;border:0;
+  color:#15231c;font-size:18px;text-transform:none
+}
+#pending-picks .pp-pending-list{display:grid;gap:10px}
+#pending-picks article{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:14px;padding:14px;
+  background:#f7f9f8;border:1px solid #d8e4dc;
+  border-radius:10px;font-size:14px
+}
+#pending-picks article>span{
+  color:#806013;font-weight:800;
+  white-space:nowrap;font-size:12px
+}
+#pending-picks .pp-free-pick{
+  background:#eef8f1;border-color:#a9d9bb
+}
+#pending-picks small{
+  display:block;color:#00864b;
+  font-size:10px;font-weight:900;margin-bottom:7px
+}
+#pending-picks strong{display:block;line-height:1.5}
+#pending-picks p{
+  margin:7px 0 0;color:#00864b;font-weight:800
+}
+@media(max-width:600px){
+  #pending-picks{margin:16px 10px;padding:16px}
+  #pending-picks article{
+    align-items:flex-start;flex-direction:column;gap:8px
+  }
+}
+</style>
+
+<script>
+(function(){
+  var section=document.getElementById('pending-picks');
+  var hero=document.querySelector('.results-hero');
+  var shell=document.querySelector('.results-shell');
+  if(hero)hero.insertAdjacentElement('afterend',section);
+  else if(shell)shell.prepend(section);
+})();
+</script>
+</body></html>
