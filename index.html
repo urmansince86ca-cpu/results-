@@ -197,7 +197,11 @@ header{padding:20px 24px}
 #pp-auto-pending .pp-auto-empty{color:#526359;font-size:13px}
 @media(max-width:600px){#pp-auto-pending{padding:15px}}
 </style>
-</head><body><header>
+<style>
+#pp-calendar-prev,#pp-calendar-next{min-width:44px;min-height:44px;border:1px solid #cfe2d5;background:#f0f3f1;color:#087442;border-radius:9px;font-size:20px;cursor:pointer}
+#pp-calendar-days{margin-top:8px}.pp-dub-day small{font-size:clamp(8px,2.4vw,11px)}
+body.pp-calendar-only> *{display:none!important}body.pp-calendar-only>#pp-shared-calendar{display:block!important;margin:0;border:0;padding:14px;background:#f7f9f8;box-sizing:border-box}body.pp-calendar-only{min-height:0;animation:none}
+</style></head><body><header>
         <div class="logo-group">
             <a href="https://professorspicks.com" class="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><rect width="500" height="500" rx="100" fill="#111318"/><g fill="none" stroke="#00ff88" stroke-linecap="round" stroke-linejoin="round"><path d="M210 140h80m-65 0v70l-85 140a30 30 0 0 0 25 45h170a30 30 0 0 0 25-45l-40-66" stroke-width="32"/><circle cx="315" cy="245" r="50" stroke-width="28"/><path d="M350 280l65 65" stroke-width="36"/></g><g fill="#00ff88"><circle cx="235" cy="95" r="16"/><circle cx="265" cy="65" r="22"/></g></svg>
@@ -212,15 +216,18 @@ header{padding:20px 24px}
     </header>
 <div class="results-shell">
 <section class="results-hero"><div><div class="eyebrow">PROFESSORS PICKS / RESULTS</div><h1>The picks. The results.<br><span>The full picture.</span></h1><p>Explore net units and individual picks across every tracked sport. Start with the latest results, then filter the ledger to look back.</p></div><div class="hero-actions"><a class="vip-cta" href="https://professorspicks.com/packages" target="_top">Explore VIP packages →</a><small>Compare plans and see what’s included</small></div></section>
-<section class="pp-dub-proof" aria-labelledby="pp-dub-title">
-<div class="eyebrow">DUBCLUB TRACKING / OCTOBER 2026</div>
-<div class="pp-dub-head"><h2 id="pp-dub-title">Winning days. Losing days. Full transparency.</h2><span class="pp-dub-total">+39.03u</span></div>
-<p>DubClub October tracking snapshot through October 18, 2026. Green represents a positive day and red a negative day. This is a separate record from the GitHub pick ledger below.</p>
-<div class="pp-dub-days" aria-label="DubClub October 2026 calendar, dates 1 through 31"><div class="pp-dub-day empty"><strong>1</strong><small>—</small></div><div class="pp-dub-day empty"><strong>2</strong><small>—</small></div><div class="pp-dub-day win"><strong>3</strong><small>+6.5u</small></div><div class="pp-dub-day win"><strong>4</strong><small>+8.4u</small></div><div class="pp-dub-day win"><strong>5</strong><small>+8.9u</small></div><div class="pp-dub-day empty"><strong>6</strong><small>—</small></div><div class="pp-dub-day loss"><strong>7</strong><small>-6.3u</small></div><div class="pp-dub-day win"><strong>8</strong><small>+4.9u</small></div><div class="pp-dub-day loss"><strong>9</strong><small>-2.5u</small></div><div class="pp-dub-day win"><strong>10</strong><small>+3.3u</small></div><div class="pp-dub-day loss"><strong>11</strong><small>-7.8u</small></div><div class="pp-dub-day loss"><strong>12</strong><small>-0.4u</small></div><div class="pp-dub-day loss"><strong>13</strong><small>-19.6u</small></div><div class="pp-dub-day loss"><strong>14</strong><small>-2.9u</small></div><div class="pp-dub-day win"><strong>15</strong><small>+10.8u</small></div><div class="pp-dub-day win"><strong>16</strong><small>+5.9u</small></div><div class="pp-dub-day win"><strong>17</strong><small>+23.6u</small></div><div class="pp-dub-day win"><strong>18</strong><small>+6.2u</small></div><div class="pp-dub-day empty"><strong>19</strong><small>—</small></div><div class="pp-dub-day empty"><strong>20</strong><small>—</small></div><div class="pp-dub-day empty"><strong>21</strong><small>—</small></div><div class="pp-dub-day empty"><strong>22</strong><small>—</small></div><div class="pp-dub-day empty"><strong>23</strong><small>—</small></div><div class="pp-dub-day empty"><strong>24</strong><small>—</small></div><div class="pp-dub-day empty"><strong>25</strong><small>—</small></div><div class="pp-dub-day empty"><strong>26</strong><small>—</small></div><div class="pp-dub-day empty"><strong>27</strong><small>—</small></div><div class="pp-dub-day empty"><strong>28</strong><small>—</small></div><div class="pp-dub-day empty"><strong>29</strong><small>—</small></div><div class="pp-dub-day empty"><strong>30</strong><small>—</small></div><div class="pp-dub-day empty"><strong>31</strong><small>—</small></div></div>
-<p>Days without a displayed result are marked —. Daily values are rounded to one decimal as shown in the supplied snapshot; the monthly total is DubClub's displayed +39.03u. This is a dated snapshot, not a live sync.</p>
-<div class="pp-dub-links"><a href="https://dubclub.win/share/capper/139935/" target="_blank" rel="noopener noreferrer">View DubClub Record ↗</a><a href="https://professorspicks.com/packages" target="_top">Explore VIP Packages →</a></div>
+<section class="pp-dub-proof" id="pp-shared-calendar" aria-labelledby="pp-dub-title">
+<div class="eyebrow">PROFESSORS PICKS / WEBSITE RECORD</div>
+<div class="pp-dub-head"><h2 id="pp-dub-title">Daily results</h2><span class="pp-dub-total" id="pp-calendar-total"></span></div>
+<div class="pp-dub-head"><button type="button" id="pp-calendar-prev" aria-label="Previous month">←</button><strong id="pp-calendar-month"></strong><button type="button" id="pp-calendar-next" aria-label="Next month">→</button></div>
+<p>Daily net units from the same picks shown in our Results ledger.</p>
+<div class="pp-dub-days" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+<div class="pp-dub-days" id="pp-calendar-days" aria-label="Daily net units"></div>
+<p id="pp-calendar-note"></p>
+<div class="pp-dub-links"><a href="https://professorspicks.com/results" target="_top">View Full Results →</a><a href="https://dubclub.win/share/capper/139935/" target="_blank" rel="noopener noreferrer">View DubClub Record ↗</a></div>
+<p>DubClub is a separate tracking source. Past performance does not guarantee future results.</p>
 </section>
-<div class="page-meta"><span>Historical ledger through October 18, 2026 · Newer Zapier records sync automatically</span><span>Eastern time: <time id="live-time"></time></span></div>
+<div class="page-meta"><span>Historical ledger through October 19, 2026 · Newer Zapier records sync automatically</span><span>Eastern time: <time id="live-time"></time></span></div>
 <div id="pp-auto-status" role="status" aria-live="polite">Checking GitHub for automated picks…</div>
 <section id="pp-auto-pending" aria-labelledby="pp-auto-pending-title"><h2 id="pp-auto-pending-title">Current pending picks</h2><div class="pp-auto-grid" id="pp-auto-pending-list"><p class="pp-auto-empty">Checking for pending picks…</p></div></section>
 <section class="summary-grid" aria-label="Available 2026 record summary"><div class="summary-box"><div class="caption">Estimated net units</div><div class="summary-number positive" id="net-summary">+219.52u</div><small>Available 2026 records</small></div><div class="summary-box"><div class="caption">Win–Loss–Push</div><div class="summary-number" id="record-summary">650–508–29</div><small>Pushes excluded from win rate</small></div><div class="summary-box"><div class="caption">Win rate</div><div class="summary-number" id="rate-summary">56.1%</div><small>Net units account for odds and stakes</small></div><div class="summary-box"><div class="caption">Recorded picks</div><div class="summary-number" id="count-summary">1,187</div><small>Historical records through October 18 + automated picks</small></div></section>
@@ -302,7 +309,7 @@ function refreshAutoResults(){
  const tabs=document.getElementById('sport-tabs');tabs.replaceChildren();
  Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport)),button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport===selectedSport));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;document.getElementById('year-filter').value='2026';document.getElementById('month-filter').value='all';limit=50;render();});tabs.appendChild(button);});
  const totals=stats(picks),header=document.getElementById('headerNetProfit');header.textContent=format(totals.net);header.className='bankroll-value '+tone(totals.net);
- render();
+ render();renderSharedCalendar();
 }
 const sportNames={all:'All sports',NFL:'NFL',NCAAF:'NCAAF',MLB:'MLB',NBA:'NBA',WNBA:'WNBA',NCAAB:'NCAAB',NHL:'NHL',SOCCER:'Soccer',MMA:'MMA / UFC',TENNIS:'Tennis',GOLF:'Golf',CFL:'CFL',NASCAR:'NASCAR'};
 const history={2025:21440,2024:18115,2023:13460,2022:26256};
@@ -342,6 +349,31 @@ $('load-more').addEventListener('click',()=>{limit+=50;render();});$('year-filte
 function clock(){$('live-time').textContent=new Date().toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true,timeZoneName:'short'});}clock();setInterval(clock,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)clock();});render();loadAutoPicks();setInterval(loadAutoPicks,300000);
 window.addEventListener('resize',()=>{if($('year-filter').value==='2026')drawChart(subset(selectedSport));});
 })();
+
+let calendarYear=2026,calendarMonth=9;
+function renderSharedCalendar(){
+ const rows=picks.filter(p=>p.date.slice(0,7)===calendarYear+'-'+String(calendarMonth+1).padStart(2,'0'));
+ const daily=new Map();rows.forEach(p=>daily.set(p.date,(daily.get(p.date)||0)+(Number.isFinite(p.cents)?p.cents:0)));
+ document.getElementById('pp-calendar-month').textContent=new Date(Date.UTC(calendarYear,calendarMonth,1)).toLocaleDateString('en-US',{month:'long',year:'numeric',timeZone:'UTC'});
+ document.getElementById('pp-calendar-total').textContent=format(stats(rows).net);
+ const grid=document.getElementById('pp-calendar-days');grid.replaceChildren();
+ const offset=(new Date(Date.UTC(calendarYear,calendarMonth,1)).getUTCDay()+6)%7;
+ for(let i=0;i<offset;i++){const blank=document.createElement('span');blank.setAttribute('aria-hidden','true');grid.appendChild(blank);}
+ const count=new Date(Date.UTC(calendarYear,calendarMonth+1,0)).getUTCDate();
+ for(let day=1;day<=count;day++){
+ const key=calendarYear+'-'+String(calendarMonth+1).padStart(2,'0')+'-'+String(day).padStart(2,'0'),has=daily.has(key),net=daily.get(key)||0;
+ const cell=document.createElement('div');cell.className='pp-dub-day '+(has?(net>0?'win':net<0?'loss':'empty'):'empty');
+ const num=document.createElement('strong');num.textContent=day;const value=document.createElement('small');value.textContent=has?format(net):'—';cell.append(num,value);cell.setAttribute('aria-label',key+': '+(has?format(net):'No graded picks recorded'));grid.appendChild(cell);
+ }
+ const dates=picks.map(p=>p.date).sort();document.getElementById('pp-calendar-note').textContent='Latest graded pick: '+(dates[dates.length-1]||'none')+'. A dash means no graded picks recorded. Pending picks are excluded.';
+}
+document.getElementById('pp-calendar-prev').onclick=()=>{calendarMonth--;if(calendarMonth<0){calendarMonth=11;calendarYear--;}renderSharedCalendar();};
+document.getElementById('pp-calendar-next').onclick=()=>{calendarMonth++;if(calendarMonth>11){calendarMonth=0;calendarYear++;}renderSharedCalendar();};
+renderSharedCalendar();
+if(new URLSearchParams(location.search).get('view')==='calendar'){
+ document.body.classList.add('pp-calendar-only');
+ document.body.prepend(document.getElementById('pp-shared-calendar'));
+}
 </script><style>html.pp-embedded,html.pp-embedded body{min-height:0!important;height:auto!important}</style><script>
 (function(){
 if(window.parent===window)return;
