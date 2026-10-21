@@ -201,7 +201,8 @@ header{padding:20px 24px}
 #pp-calendar-prev,#pp-calendar-next{min-width:44px;min-height:44px;border:1px solid #cfe2d5;background:#f0f3f1;color:#087442;border-radius:9px;font-size:20px;cursor:pointer}
 #pp-calendar-days{margin-top:8px}.pp-dub-day small{font-size:clamp(8px,2.4vw,11px)}
 body.pp-calendar-only> *{display:none!important}body.pp-calendar-only>#pp-shared-calendar{display:block!important;margin:0;border:0;padding:14px;background:#f7f9f8;box-sizing:border-box}body.pp-calendar-only{min-height:0;animation:none}
-</style></head><body><header>
+</style><style id="pp-hide-technical-sync">#pp-auto-status{display:none!important}</style>
+</head><body><header>
         <div class="logo-group">
             <a href="https://professorspicks.com" class="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><rect width="500" height="500" rx="100" fill="#111318"/><g fill="none" stroke="#00ff88" stroke-linecap="round" stroke-linejoin="round"><path d="M210 140h80m-65 0v70l-85 140a30 30 0 0 0 25 45h170a30 30 0 0 0 25-45l-40-66" stroke-width="32"/><circle cx="315" cy="245" r="50" stroke-width="28"/><path d="M350 280l65 65" stroke-width="36"/></g><g fill="#00ff88"><circle cx="235" cy="95" r="16"/><circle cx="265" cy="65" r="22"/></g></svg>
