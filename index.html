@@ -245,6 +245,13 @@ body.pp-calendar-only> *{display:none!important}body.pp-calendar-only>#pp-shared
 (function(){
 'use strict';
 const picks=[
+{"date":"2026-10-26","sport":"NHL","pick":"Edmonton Oilers +1.5 (-450) — risk 4.5u to win 1u","outcome":"WIN","cents":100,"score":"Win","estimated":false},
+{"date":"2026-10-26","sport":"NHL","pick":"Edmonton Oilers ML (-180) — risk 1.8u to win 1u","outcome":"LOSS","cents":-180,"score":"Loss","estimated":false},
+{"date":"2026-10-25","sport":"NFL","pick":"Kansas City Chiefs game 1st Quarter Total Under 7.5 (-122) — to win 3u","outcome":"WIN","cents":300,"score":"Win","estimated":false},
+{"date":"2026-10-25","sport":"NFL","pick":"Los Angeles Rams @ Las Vegas Raiders 1st Half Total Over 18.5 (-356) — risk 3u","outcome":"WIN","cents":84,"score":"Win","estimated":false},
+{"date":"2026-10-25","sport":"NFL","pick":"San Francisco 49ers @ Atlanta Falcons 1st Half Total Over 19.5 (-337) — risk 3u","outcome":"WIN","cents":89,"score":"Win","estimated":false},
+{"date":"2026-10-25","sport":"NFL","pick":"Colts 1st Quarter Over 6.5 (-214) — to win 3u","outcome":"WIN","cents":300,"score":"Win","estimated":false},
+{"date":"2026-10-25","sport":"NFL","pick":"Colts 1st Half Over 18.5 (-200) — risk 6u to win 3u","outcome":"LOSS","cents":-600,"score":"Loss","estimated":false},
 {"date":"2026-10-20","sport":"NBA","pick":"Detroit Pistons ML (+118) — AI Bot research, risk 3u","score":"Win","outcome":"WIN","cents":354,"estimated":false},
 {"date":"2026-10-20","sport":"NCAAF","pick":"Marshall Thundering Herd ML (+119) — AI Bot research, risk 3u","score":"Win","outcome":"WIN","cents":357,"estimated":false},
 {"date":"2026-10-20","sport":"NBA","pick":"San Antonio Spurs ML (-118) — AI Bot research, to win 3u","score":"Loss","outcome":"LOSS","cents":-354,"estimated":false},
@@ -453,33 +460,5 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline-color:#00864b}
 
 
 
-<!-- October 20 DubClub public record separate from the integrated research ledger. -->
-<style>
-#pp-oct20-update{background:#fff;border:1px solid #cfe2d5;border-radius:14px;padding:20px;margin:18px 0}
-#pp-oct20-update h2{color:#15231c;font-size:20px;text-transform:none;border:0;margin:0 0 10px}
-#pp-oct20-update .pp-oct-result{font-size:29px;font-weight:900;color:#087442}
-#pp-oct20-update p{font-size:13px;color:#526359;line-height:1.6}
-#pp-oct20-update .pp-oct-picks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
-#pp-oct20-update .pp-oct-pick{background:#f1f6f3;border:1px solid #d8e4dc;border-radius:9px;padding:12px;font-size:13px}
-#pp-oct20-update .pp-oct-pick b{display:block;margin-top:5px}
-#pp-oct20-update .pp-oct-pick .w{color:#087442}#pp-oct20-update .pp-oct-pick .l{color:#b42332}
-@media(max-width:600px){#pp-oct20-update .pp-oct-picks{grid-template-columns:1fr}}
-</style>
-<script>
-(function(){
-function setup(){
- var cal=document.getElementById('pp-shared-calendar');if(!cal)return;
- var panel=document.createElement('section');panel.id='pp-oct20-update';
- panel.innerHTML='<div class="eyebrow">DUBCLUB PUBLIC RECORD · OCTOBER 20, 2026</div><h2>October 20 Results</h2><div class="pp-oct-result">+2.10u <span style="font-size:14px;color:#526359">· 2 Wins / 2 Losses</span></div><div class="pp-oct-picks"><div class="pp-oct-pick">NBA · Detroit Pistons ML +118<b class="w">WIN</b></div><div class="pp-oct-pick">NCAAF · Marshall ML +119<b class="w">WIN</b></div><div class="pp-oct-pick">NBA · San Antonio Spurs ML -118<b class="l">LOSS</b></div><div class="pp-oct-pick">NHL · New Jersey Devils Under 6.5 -105<b class="l">LOSS</b></div></div><p>DubClub reported +2.10u on October 20 and +38.14u for October through October 20. The original Results graph, ledger and daily calendar include these four outcomes using AI Bot research staking (+0.42u); the separate DubClub public result is +2.10u. These figures use different staking records. Past performance does not guarantee future results.</p>';
- cal.parentNode.insertBefore(panel,cal);
- if(new URLSearchParams(location.search).get('view')==='calendar'){
-  document.body.classList.add('pp-calendar-only');
-  document.body.insertBefore(panel,cal);
-  var style=document.createElement('style');style.textContent='body.pp-calendar-only>#pp-oct20-update{display:block!important;margin:12px 14px}';document.head.appendChild(style);
- }
- 
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
-})();
-</script>
+
 </body></html>
