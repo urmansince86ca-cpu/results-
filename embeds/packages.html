@@ -1,0 +1,329 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f7f9f8;color:#15231c;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+a{color:inherit;touch-action:manipulation}
+a:focus-visible,summary:focus-visible{outline:3px solid #00864b;outline-offset:4px}
+.pp{max-width:1080px;margin:auto;padding:0 24px 32px}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;border-bottom:1px solid #dce5df}
+.brand-link{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900;text-decoration:none}
+.brand-icon{width:34px;height:34px;flex-shrink:0}
+.green{color:#00864b}
+.brand-note,.fine{color:#526359;font-size:12px;line-height:1.65}
+.eyebrow{text-transform:uppercase;letter-spacing:1.2px;font-size:11px;font-weight:800;color:#087442}
+h1{font-size:clamp(36px,5vw,56px);line-height:1.08;letter-spacing:-1.8px;margin:14px 0 18px}
+h1 span{color:#00864b}
+p{line-height:1.65;color:#45594c;font-size:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 18px;border:1px solid #bccdc2;border-radius:9px;background:#fff;color:#173b28;font-size:14px;font-weight:800;text-decoration:none;text-align:center;line-height:1.4}
+.btn:hover{background:#00df80;color:#072c19;border-color:#00b96b}
+.primary{background:#00df80;color:#072c19;border-color:#00b96b}
+.primary:hover{background:#46efa7}
+.fine{margin:8px 0}
+.section{padding-top:36px}
+.section h2{font-size:30px;letter-spacing:-.8px;margin:10px 0 12px}
+.intro{margin:0 0 22px;font-size:15px}
+.included{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 22px;padding:16px 18px;border:1px solid #d7e7dc;background:#eef8f1;border-radius:10px;font-size:13px;line-height:1.6;color:#244b34}
+.billing-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.billing-group{min-width:0;padding:22px;border:1px solid #ceded3;border-radius:16px;background:#fff}
+.billing-group h3{font-size:23px;letter-spacing:-.5px;margin:10px 0 7px}
+.billing-label{display:inline-block;font-size:11px;letter-spacing:.6px;font-weight:900;padding:7px 10px;border-radius:6px;background:#e7f8ec;color:#176138}
+.subscription .billing-label{background:#eaf0f7;color:#304b6a}
+.billing-description{font-size:14px;margin:0 0 20px;color:#45594c}
+.offer{padding:20px 0;border-top:1px solid #e0e8e2}
+.offer h4{font-size:18px;margin:0 0 8px}
+.price{font-size:30px;font-weight:900;letter-spacing:-.8px;line-height:1.25}
+.price small{display:block;margin-top:5px;font-size:13px;letter-spacing:0;font-weight:600;color:#526359}
+.terms{font-size:13px;margin:10px 0 14px;line-height:1.6;color:#45594c}
+.offer .btn{width:100%}
+.start{background:#f0fcf4;border:1px solid #b8e8c9;border-radius:10px;padding:18px;margin-bottom:18px}
+.start-tag{display:block;font-size:10px;letter-spacing:.8px;font-weight:900;color:#087442;margin-bottom:10px}
+.long-term{border-top:1px solid #dce5df;margin-top:2px;padding-top:17px}
+.long-term summary{cursor:pointer;font-size:14px;font-weight:800;line-height:1.6;padding:5px 0}
+.long-term .offer:last-child{padding-bottom:0}
+.billing-note{font-size:12px;color:#526359;line-height:1.7;margin:16px 0 0}
+.vip-sample{margin-top:24px;border:1px solid #d0e2d6;border-radius:12px;background:#fff}
+.vip-sample>summary{cursor:pointer;padding:18px 20px;font-size:15px;font-weight:800;line-height:1.5}
+.sample-caption{display:block;font-size:12px;font-weight:400;color:#526359;margin-top:4px}
+.sample-body{padding:0 20px 20px;border-top:1px solid #e0e8e2}
+.sample-body>p{font-size:14px}
+.vip-card{border:1px solid #d5e2d9;border-radius:10px;overflow:hidden}
+.vip-head{padding:16px;background:#eef8f1;font-weight:800;font-size:14px}
+.vip-row{display:grid;grid-template-columns:55px minmax(0,1fr) 36px;gap:10px;align-items:center;padding:16px;border-top:1px solid #e0e8e2;font-size:13px}
+.vip-row small{display:block;font-size:11px;line-height:1.5;color:#526359;margin-top:4px}
+.vip-unit{text-align:right;color:#087442;font-weight:900}
+.closing{margin-top:32px;padding:26px 0;border-top:1px solid #d4e1d8;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.closing h2{font-size:25px;margin:0 0 8px}
+.risk-note{font-size:12px;color:#596b60;line-height:1.65;margin:0}
+.track-panel{border:1px solid #cfe2d5;background:#fff;border-radius:16px;padding:25px;box-shadow:0 8px 26px #15372108}
+.results-frame{display:block;width:100%;height:1250px;margin-top:18px;border:1px solid #cfe2d5;border-radius:16px;background:#f7f9f8}
+@media(max-width:800px){
+.brand-note{display:none}
+.billing-grid{grid-template-columns:1fr}
+.closing{align-items:flex-start;flex-direction:column}
+.closing .btn{width:100%}
+.btn{font-size:16px}
+.results-frame{height:1350px}
+}
+@media(max-width:480px){
+.pp{padding:0 16px 24px}
+.brand{padding:16px 0}
+.brand-link{gap:6px;font-size:16px}
+.brand-sports{display:none}
+.section{padding-top:28px}
+.section h2{font-size:26px}
+.billing-group{padding:18px}
+.billing-group h3{font-size:22px}
+.included{display:grid;gap:7px}
+.price{font-size:29px}
+.vip-row{grid-template-columns:44px minmax(0,1fr) 28px;gap:7px;padding:14px 10px;font-size:12px}
+.sample-body{padding:0 12px 16px}
+.track-panel{padding:16px}
+.results-frame{height:1450px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<main class="pp">
+<header class="brand">
+<a class="brand-link" href="https://professorspicks.com/" target="_top">
+<svg class="brand-icon" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 500 500" aria-hidden="true">
+<rect width="500" height="500" rx="100" fill="#e7f8ec"/>
+<g fill="none" stroke="#00864b" stroke-linecap="round" stroke-linejoin="round">
+<path d="M210 140h80m-65 0v70l-85 140a30 30 0 0 0 25 45h170a30 30 0 0 0 25-45l-40-66" stroke-width="32"/>
+<circle cx="315" cy="245" r="50" stroke-width="28"/>
+<path d="M350 280l65 65" stroke-width="36"/>
+</g>
+<g fill="#00864b"><circle cx="235" cy="95" r="16"/><circle cx="265" cy="65" r="22"/></g>
+</svg>
+Professors <span class="green brand-sports">Sports</span> Picks
+</a>
+<span class="brand-note">All-sports picks. Posted odds. Transparent results.</span>
+</header>
+
+<section class="section">
+<div class="eyebrow">Professors Picks · All Sports VIP</div>
+<h1>Choose your <span>VIP access.</span></h1>
+<p>All plans include the same private Telegram picks. Select one-time access or an auto-renewing subscription.</p>
+</section>
+
+<section class="section" id="plans" aria-labelledby="plans-title">
+<div class="eyebrow">VIP access &amp; pricing</div>
+<h2 id="plans-title">Same VIP picks. Choose your billing.</h2>
+<p class="intro">Every plan includes the same All Sports VIP service during your active access period.</p>
+<div class="included">
+<span>✓ All-sports selections</span>
+<span>✓ Posted odds + 1–3 unit ratings</span>
+<span>✓ Private Telegram delivery</span>
+</div>
+
+<div class="billing-grid">
+<section class="billing-group" aria-labelledby="one-time-title">
+<span class="billing-label">ONE-TIME PAYMENT</span>
+<h3 id="one-time-title">Pay once. No renewal.</h3>
+<p class="billing-description">Access ends when your pass expires. You will not be automatically charged again.</p>
+
+<article class="offer start">
+<span class="start-tag">TRY VIP · 24 HOURS</span>
+<h4>1-Day All Sports VIP</h4>
+<div class="price">$12.99 <small>one payment · 24-hour access</small></div>
+<p class="terms">No subscription. No automatic renewal.</p>
+<a class="btn primary" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">Go VIP for 1 Day — $12.99 →</a>
+</article>
+
+<article class="offer">
+<h4>7-Day All Sports VIP</h4>
+<div class="price">$39.99 <small>one payment · 7-day access</small></div>
+<p class="terms">Pay once. Access ends after 7 days.</p>
+<a class="btn" href="https://buy.stripe.com/6oU5kEbLi4k747O3RWg7e0d" target="_top">Buy 7 Days — $39.99 →</a>
+</article>
+
+<article class="offer">
+<h4>30-Day All Sports VIP</h4>
+<div class="price">$119 <small>one payment · 30-day access</small></div>
+<p class="terms">Pay once. Access ends after 30 days.</p>
+<a class="btn" href="https://buy.stripe.com/4gM7sMg1ydUHawc4W0g7e0e" target="_top">Buy 30 Days — $119 →</a>
+</article>
+
+<details class="long-term">
+<summary>Longer one-time passes · 12 months / 3 years</summary>
+<article class="offer">
+<h4>12-Month All Sports VIP</h4>
+<div class="price">$999 <small>paid upfront · 12-month access</small></div>
+<p class="terms">One payment. No automatic renewal.</p>
+<a class="btn" href="https://buy.stripe.com/5kQeVecPm2bZgUA2NSg7e0k" target="_top">Buy 12 Months — $999 →</a>
+</article>
+<article class="offer">
+<h4>3-Year All Sports VIP</h4>
+<div class="price">$1,999 <small>paid upfront · 3-year access</small></div>
+<p class="terms">One payment. No automatic renewal.</p>
+<a class="btn" href="https://buy.stripe.com/dRmaEYg1y7wjawcfAEg7e0l" target="_top">Buy 3 Years — $1,999 →</a>
+</article>
+</details>
+</section>
+
+<section class="billing-group subscription" aria-labelledby="subscription-title">
+<span class="billing-label">AUTO-RENEW SUBSCRIPTIONS</span>
+<h3 id="subscription-title">Keep VIP access going.</h3>
+<p class="billing-description">Your selected plan automatically renews at the price below until you cancel.</p>
+
+<article class="offer">
+<h4>7-Day All Sports VIP</h4>
+<div class="price">$39.99 <small>charged every 7 days</small></div>
+<p class="terms"><strong>Automatic renewal:</strong> $39.99 today and every 7 days until canceled.</p>
+<a class="btn primary" href="https://buy.stripe.com/7sYdRa4iQ8An1ZG1JOg7e0c" target="_top">Subscribe — $39.99 / 7 Days →</a>
+</article>
+
+<article class="offer">
+<h4>30-Day All Sports VIP</h4>
+<div class="price">$99 <small>charged every 30 days</small></div>
+<p class="terms"><strong>Automatic renewal:</strong> $99 today and every 30 days until canceled.</p>
+<a class="btn primary" href="https://buy.stripe.com/cNi9AU5mUbMzgUAewAg7e09" target="_top">Subscribe — $99 / 30 Days →</a>
+</article>
+<p class="billing-note">Prefer to pay once? Choose a pass in the One-Time Payment section. Review your selected price and billing terms in Stripe before paying.</p>
+</section>
+</div>
+
+<details class="vip-sample">
+<summary>Take a look inside VIP<span class="sample-caption">Tap to preview the format · Selections stay private</span></summary>
+<div class="sample-body">
+<p>Each release shows the selection, posted odds, and unit rating. Here is an illustrative preview.</p>
+<div class="vip-card" aria-label="Sample VIP format; no actual selections shown">
+<div class="vip-head">Professor’s Picks · Sample Card</div>
+<div class="vip-row">
+<strong>NHL</strong>
+<div><strong>VIP selection hidden</strong><small>Team, market, and odds shown inside VIP</small></div>
+<span class="vip-unit">3U</span>
+</div>
+<div class="vip-row">
+<strong>NCAAF</strong>
+<div><strong>VIP selection hidden</strong><small>Matchup, line, and odds shown inside VIP</small></div>
+<span class="vip-unit">2U</span>
+</div>
+</div>
+<p class="fine">Illustrative format only. Actual selections vary by day and sport. U = units.</p>
+</div>
+</details>
+</section>
+
+<section class="section" id="tracked-record" aria-label="Professors Picks tracked results">
+<iframe class="results-frame" src="https://urmansince86ca-cpu.github.io/results-/?view=calendar" title="Professors Picks daily results calendar" loading="lazy"></iframe>
+
+<p class="fine">
+<a href="https://professorspicks.com/results" target="_top">View Full Results →</a>
+·
+<a href="https://dubclub.win/share/capper/139935/" target="_blank" rel="noopener noreferrer">Verify on DubClub ↗</a>
+</p>
+</section>
+
+<section class="closing">
+<div>
+<h2>Start with one day of VIP.</h2>
+<p class="fine">$12.99 once · 24 hours · no automatic renewal</p>
+</div>
+<a class="btn primary" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">Go VIP for 1 Day →</a>
+</section>
+
+<p class="risk-note">All wagers involve risk. Past results do not guarantee future performance.</p>
+</main>
+
+<style>
+#pp-vip-board{margin:24px 0;padding:26px;border:1px solid #285b40;border-radius:16px;background:#123d2a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#pp-vip-board *{box-sizing:border-box}
+#pp-vip-board [hidden]{display:none!important}
+#pp-vip-board .pp-vip-tag{font-size:11px;font-weight:800;letter-spacing:1.3px;color:#8ef0b9;text-transform:uppercase}
+#pp-vip-board h2{margin:9px 0;font-size:28px;line-height:1.15;color:#fff;letter-spacing:-.6px}
+#pp-vip-board p{margin:9px 0 18px;color:#d9e9df;font-size:14px;line-height:1.6}
+#pp-vip-board .pp-vip-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#pp-vip-board .pp-vip-card{padding:18px;background:#1c4b35;border:1px solid #47745a;border-radius:12px}
+#pp-vip-board .pp-vip-day{display:block;font-size:13px;font-weight:800;color:#cce4d5}
+#pp-vip-board .pp-vip-count{display:block;margin:8px 0;font-size:31px;line-height:1.2;font-weight:900;color:#fff}
+#pp-vip-board .pp-vip-lock{font-size:12px;color:#bcebd0}
+#pp-vip-board .pp-vip-button{display:inline-flex;align-items:center;justify-content:center;margin-top:18px;min-height:48px;padding:13px 20px;border-radius:9px;background:#00df80;border:1px solid #00df80;color:#072c19;font-size:15px;font-weight:800;text-decoration:none;text-align:center}
+#pp-vip-board .pp-vip-button:hover{background:#46efa7}
+#pp-vip-board .pp-vip-button:focus-visible{outline:3px solid #ffd36a;outline-offset:4px}
+#pp-vip-board .pp-vip-note{font-size:11px;color:#c5dacc;margin:10px 0 0}
+#pp-vip-board.pp-vip-compact{padding:20px}
+#pp-vip-board.pp-vip-compact h2{font-size:23px}
+#pp-vip-board.pp-vip-compact .pp-vip-card{padding:13px 16px}
+#pp-vip-board.pp-vip-compact .pp-vip-count{font-size:26px}
+@media(max-width:480px){
+#pp-vip-board{padding:20px 16px}
+#pp-vip-board h2{font-size:25px}
+#pp-vip-board .pp-vip-card{padding:14px 10px}
+#pp-vip-board .pp-vip-day{font-size:12px}
+#pp-vip-board .pp-vip-count{font-size:27px}
+#pp-vip-board .pp-vip-button{width:100%}
+}
+</style>
+
+<section id="pp-vip-board" aria-labelledby="pp-vip-title" hidden>
+<div class="pp-vip-tag">The VIP lineup</div>
+<h2 id="pp-vip-title">Your next picks stay inside VIP.</h2>
+<p>See what’s on the card. Get the selections, posted odds and unit ratings in our private Telegram channel.</p>
+<div class="pp-vip-grid"></div>
+<a class="pp-vip-button" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">Go VIP for 1 Day — $12.99 →</a>
+<p class="pp-vip-note">One payment · 24-hour access · No automatic renewal.<br>Daily card totals · Pacific Time · Some games may have started.</p>
+</section>
+
+<script>
+(function(){
+  // Update these dates and counts for each new daily card.
+  // Never put actual selections in this public code.
+  var cards = [
+    {date:'2026-10-23', bets:4},
+    {date:'2026-10-24', bets:8}
+  ];
+  var board=document.getElementById('pp-vip-board');
+  if(!board)return;
+  var hero=document.querySelector('.hero');
+  var plans=document.getElementById('plans');
+  if(hero){
+    hero.insertAdjacentElement('afterend',board);
+  }else if(plans){
+    plans.insertAdjacentElement('beforebegin',board);
+    board.classList.add('pp-vip-compact');
+  }
+  function refresh(){
+    var parts=new Intl.DateTimeFormat('en-US',{
+      timeZone:'America/Los_Angeles',
+      year:'numeric',month:'2-digit',day:'2-digit'
+    }).formatToParts(new Date());
+    var values={};
+    parts.forEach(function(p){values[p.type]=p.value;});
+    var today=values.year+'-'+values.month+'-'+values.day;
+    var next=new Date(today+'T12:00:00Z');
+    next.setUTCDate(next.getUTCDate()+1);
+    var tomorrow=next.toISOString().slice(0,10);
+    var grid=board.querySelector('.pp-vip-grid');
+    grid.textContent='';
+    cards.filter(function(c){
+      return c.date===today||c.date===tomorrow;
+    }).forEach(function(c){
+      var card=document.createElement('div');
+      card.className='pp-vip-card';
+      var label=document.createElement('span');
+      label.className='pp-vip-day';
+      var date=new Date(c.date+'T12:00:00Z');
+      label.textContent=(c.date===today?'Today':'Tomorrow')+' · '+
+        new Intl.DateTimeFormat('en-US',{
+          timeZone:'UTC',month:'short',day:'numeric'
+        }).format(date);
+      var count=document.createElement('strong');
+      count.className='pp-vip-count';
+      count.textContent=c.bets+' bets';
+      var lock=document.createElement('span');
+      lock.className='pp-vip-lock';
+      lock.textContent='🔒 Selections stay private';
+      card.appendChild(label);
+      card.appendChild(count);
+      card.appendChild(lock);
+      grid.appendChild(card);
+    });
+    grid.style.gridTemplateColumns=grid.children.length===1?'1fr':'';
+    board.hidden=grid.children.length===0;
+  }
+  refresh();
+  setInterval(refresh,60000);
+})();
+</script>
