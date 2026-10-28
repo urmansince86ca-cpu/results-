@@ -1,0 +1,204 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}
+body{margin:0;border:3px solid #123d2a;background:#f7f9f8;color:#15231c;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}
+a,button,summary{touch-action:manipulation}
+.pp{max-width:1080px;margin:auto;padding:0 20px 32px}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid #d8e4dc}
+.brand a{font-size:19px;font-weight:900;text-decoration:none}
+.green{color:#00864b}
+.muted{color:#526359}
+.hero{padding:30px 0 24px}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:800;color:#00864b}
+h1{font-size:clamp(32px,5vw,48px);line-height:1.12;letter-spacing:-1px;margin:12px 0 16px}
+h2{font-size:25px;margin:12px 0}
+h3{font-size:19px;line-height:1.4}
+p{font-size:15px;line-height:1.65;color:#45594c}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 18px;border:1px solid #bccdc2;border-radius:9px;background:#fff;color:#173b28;text-decoration:none;font-size:14px;font-weight:800;text-align:center}
+.primary,.btn:hover{background:#00df80;border-color:#00b96b;color:#072c19}
+.board,.box{background:#fff;border:1px solid #d8e4dc;border-radius:14px;padding:24px}
+.board{background:#eef8f1;border-color:#b8dcc4}
+.badge{display:inline-block;background:#e0f2e6;color:#176138;border-radius:6px;padding:7px 10px;font-size:11px;font-weight:800;text-transform:uppercase}
+.pending{background:#fff2d4;color:#806013}
+.pick{font-size:30px;line-height:1.2;font-weight:900;color:#00864b;margin:16px 0}
+.details{display:flex;flex-wrap:wrap;gap:10px}
+.details span{padding:9px 13px;background:#fff;border:1px solid #c7dfcf;border-radius:8px;font-size:14px;font-weight:800}
+.pick-vip{margin-top:22px;padding-top:20px;border-top:1px solid #c7dfcf}
+.pick-vip .btn{width:100%;min-height:52px;font-size:16px}
+.pick-vip .fine{margin:9px 0 0;text-align:center}
+.fine{font-size:12px;color:#526359}
+.section{padding-top:32px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.loss{color:#b42332}
+form{max-width:560px;display:flex;flex-direction:column;gap:10px}
+label{font-size:14px;font-weight:700}
+input:not([type=checkbox]){width:100%;font:inherit;font-size:16px;border:1px solid #bccdc2;border-radius:9px;padding:14px;background:#f7f9f8;color:#15231c}
+.consent{display:flex;align-items:flex-start;gap:10px;line-height:1.5;margin:8px 0}
+.consent input{width:20px;height:20px;flex-shrink:0;accent-color:#00864b}
+.consent span{font-weight:400}
+button{font:inherit;cursor:pointer}
+details{padding:16px 0;border-bottom:1px solid #d8e4dc}
+summary{font-size:15px;font-weight:700;cursor:pointer}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #00864b;outline-offset:3px}
+.track-box{background:#fff;border:1px solid #cfe2d5;border-radius:14px;padding:24px}
+.track-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.track-head h2{margin:8px 0}
+.track-total{display:inline-block;padding:10px 15px;border-radius:10px;background:#e0f5e8;color:#087442;border:1px solid #a9dfbc;font-size:20px;font-weight:900}
+.track-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin:16px 0}
+.track-day{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:62px;padding:8px 3px;border-radius:8px;font-size:11px;font-weight:800;text-align:center}
+.track-day small{font-size:11px;font-weight:900}
+.track-day.win{background:#e0f5e8;color:#087442;border:1px solid #a9dfbc}
+.track-day.loss{background:#fbe7e7;color:#b43c48;border:1px solid #efc4c7}
+.track-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.track-links .btn{flex:1;min-width:180px}
+.track-note{font-size:12px;color:#526359;margin:12px 0}
+@media(max-width:600px){
+.pp{padding:0 16px 24px}
+.brand small{display:none}
+.grid{grid-template-columns:1fr}
+.actions .btn{width:100%}
+.board,.box,.track-box{padding:20px}
+.pick{font-size:27px}
+.track-days{gap:4px}
+.track-day{min-height:53px;font-size:10px;padding:6px 2px}
+.track-day small{font-size:9px}
+.track-links .btn{width:100%;min-width:100%}
+}
+</style>
+
+<main class="pp">
+<header class="brand">
+<a href="https://professorspicks.com/" target="_top">Professors <span class="green">Picks</span></a>
+<small class="muted">Free selections. Posted odds. Clear records.</small>
+</header>
+
+<section class="hero">
+<div class="eyebrow">Free sports picks</div>
+<h1>Latest free pick.<br><span class="green">Follow along.</span></h1>
+<p>Review the selection and posted odds below. Join our public Telegram channel for complimentary releases and updates.</p>
+<div class="actions">
+<a class="btn primary" href="https://t.me/professorspicksclub" target="_blank" rel="noopener noreferrer">Join Free Telegram →</a>
+<a class="btn" href="#email-signup">Request Email Updates</a>
+</div>
+<p class="fine">Free to join. No paid subscription required.</p>
+</section>
+
+<article class="board" data-date="2026-11-01" data-status="pending">
+<span class="badge">Event: Sunday, November 1, 2026</span>
+<p class="fine">Posted <time datetime="2026-10-27">October 27, 2026</time> · NFL · First-half spread.</p>
+<h2>NFL · Jacksonville Jaguars</h2>
+<div class="pick">Jaguars First Half −4.5 (−112)</div>
+<div class="details">
+<span>First-half spread: −4.5</span>
+<span>Odds: −112</span>
+<span class="pending">Pending</span>
+</div>
+<p class="fine">Posted line and odds may change. This selection has not been graded.</p>
+
+<div class="pick-vip">
+<a class="btn primary" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">Go VIP for 1 Day — $12.99 →</a>
+<p class="fine">24-hour All Sports VIP access. One payment. No automatic renewal.</p>
+</div>
+
+<div class="actions">
+<a class="btn" href="https://t.me/professorspicksclub" target="_blank" rel="noopener noreferrer">Follow the Free Channel →</a>
+<a class="btn" href="https://professorspicks.com/results" target="_top">View Results →</a>
+</div>
+</article>
+
+<section class="section" aria-labelledby="track-title">
+<div class="track-box">
+<div class="eyebrow">Transparency &amp; accountability</div>
+<h2 id="track-title">Review our tracked results.</h2>
+<p>See our daily calendar and full website ledger, including wins, losses, and net units.</p>
+<div class="track-links">
+<a class="btn primary" href="https://professorspicks.com/results" target="_top">View Tracked Results →</a>
+<a class="btn" href="https://dubclub.win/share/capper/139935/" target="_blank" rel="noopener noreferrer">View DubClub Record ↗</a>
+</div>
+<p class="track-note">DubClub is a separate tracking source and may cover different picks or stakes. Past performance does not guarantee future results.</p>
+</div>
+</section>
+
+<section class="section" id="free-picks-archive" aria-labelledby="archive-title">
+<h2 id="archive-title">Free Picks Archive</h2>
+<p>Browse past free sports picks, posted odds, and recorded results. This archive includes completed free picks and historical entries carried over from the previous page. It is not the complete service record.</p>
+<!-- Keep settled picks in this visible archive when adding future releases. -->
+<div class="grid">
+<article class="box" data-date="2026-10-24" data-status="loss">
+<span class="badge">Saturday, October 24, 2026</span>
+<h3>UFC · Keita moneyline</h3>
+<p>Posted odds: +124 · To win: 1u · Risk: approximately 0.8065u</p>
+<strong class="loss">Loss · −0.8065u</strong>
+</article>
+<article class="box" data-status="win">
+<span class="badge">Aug 28 · Year not provided</span>
+<h3>SF/ARZ first-five over 4.5</h3>
+<p>Posted odds: −110 · Listed stake: 3u</p>
+<strong class="green">Win · +2.70u</strong>
+</article>
+<article class="box" data-status="loss">
+<span class="badge">Aug 26 · Year not provided</span>
+<h3>Cubs moneyline</h3>
+<p>Posted odds: −105 · Listed stake: 3u</p>
+<strong class="loss">Loss · −3.15u</strong>
+</article>
+</div>
+<p class="fine">Archive total: 1 win, 2 losses and approximately −1.2565u. The two older entries retain their originally recorded units; Keita’s loss uses the posted risk of approximately 0.8065u. The pending Jaguars selection is excluded.</p>
+</section>
+
+<section class="section" id="email-signup">
+<div class="box">
+<div class="eyebrow">Stay in touch</div>
+<h2>Request free-pick email updates.</h2>
+<p>For the latest public releases, follow our Telegram channel.</p>
+<form action="https://formspree.io/f/xvznylld" method="POST" target="_top">
+<input type="hidden" name="_subject" value="New Free Picks Inner Circle Subscriber">
+<label for="free-name">First name</label>
+<input id="free-name" name="firstname" type="text" autocomplete="given-name" required placeholder="Your first name">
+<label for="free-email">Email address</label>
+<input id="free-email" name="_replyto" type="email" autocomplete="email" required placeholder="you@example.com">
+<label class="consent">
+<input name="email_updates_consent" type="checkbox" value="yes" required>
+<span>I agree to receive free-pick and VIP offer emails from Professors Picks.</span>
+</label>
+<button class="btn primary" type="submit">Request Email Updates →</button>
+<p class="fine">Submitting shares these details with Professors Picks through Formspree. Read our <a href="https://professorspicks.com/privacy" target="_top">Privacy Policy</a>.</p>
+</form>
+</div>
+</section>
+
+<section class="section">
+<div class="box">
+<div class="eyebrow">Get more with VIP</div>
+<h2>Explore All Sports VIP.</h2>
+<p>Compare one-time passes and auto-renew subscriptions. Every plan includes official VIP selections, posted odds, unit ratings, and private Telegram delivery during active access.</p>
+<div class="actions">
+<a class="btn" href="https://professorspicks.com/packages" target="_top">Explore All Sports Packages →</a>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Quick answers.</h2>
+<details>
+<summary>Is the public Telegram channel free?</summary>
+<p>Yes. The public channel is separate from paid VIP access.</p>
+</details>
+<details>
+<summary>Is there a free pick every day?</summary>
+<p>No daily release is promised. Check this page and the public Telegram channel for updates.</p>
+</details>
+<details>
+<summary>Is the latest free pick completed?</summary>
+<p>Jacksonville Jaguars first half −4.5 (−112) for Sunday, November 1, 2026 is pending and excluded from completed results. Keita has been graded as a loss and moved to the archive.</p>
+</details>
+<details>
+<summary>Does the one-day VIP pass renew?</summary>
+<p>No. The $12.99 pass is one payment for 24-hour access with no automatic renewal.</p>
+</details>
+</section>
+
+<p class="fine" style="margin-top:24px">All wagers involve risk. No outcome or profit is guaranteed. Historical results do not guarantee future performance.</p>
+</main>

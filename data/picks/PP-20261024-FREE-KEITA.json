@@ -1,0 +1,23 @@
+{
+  "pick_id": "PP-20261024-FREE-KEITA",
+  "pick_date": "2026-10-24",
+  "sport": "MMA",
+  "selection": "Keita moneyline — free pick, to win 1u",
+  "odds": 124,
+  "stake_units": 0.8064516129032259,
+  "to_win_units": 1,
+  "status": "loss",
+  "net_units": -0.8064516129032259,
+  "visibility": "free",
+  "notes": "Uses latest supplied Free Picks HTML odds +124. Earlier +105 quote preserved here as price history, not a second bet.",
+  "odds_history": [
+    {
+      "odds": 105,
+      "date": "2026-10-20"
+    },
+    {
+      "odds": 124,
+      "date": "2026-10-23"
+    }
+  ]
+}
