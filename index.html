@@ -200,7 +200,7 @@ header{padding:20px 24px}
 <style>
 #pp-calendar-prev,#pp-calendar-next{min-width:44px;min-height:44px;border:1px solid #cfe2d5;background:#f0f3f1;color:#087442;border-radius:9px;font-size:20px;cursor:pointer}
 #pp-calendar-days{margin-top:8px}.pp-dub-day small{font-size:clamp(8px,2.4vw,11px)}
-body.pp-calendar-only> *{display:none!important}body.pp-calendar-only>#pp-shared-calendar{display:block!important;margin:0;border:0;padding:14px;background:#f7f9f8;box-sizing:border-box}body.pp-calendar-only{min-height:0;animation:none}
+body.pp-calendar-only> *{display:none!important}body.pp-calendar-only>#pp-shared-calendar{display:block!important;margin:0;border:0;padding:14px;background:#f7f9f8;box-sizing:border-box}body.pp-calendar-only{min-height:0;animation:none;border:0!important;margin:0!important;padding:0!important}body.pp-calendar-only>#pp-shared-calendar{border-radius:0!important}
 </style><style id="pp-hide-technical-sync">#pp-auto-status{display:none!important}</style>
 <style id="pp-page-border">body{box-sizing:border-box;border:3px solid #123d2a}</style>
 </head><body><header>
@@ -394,7 +394,7 @@ if(new URLSearchParams(location.search).get('view')==='calendar'){
 if(window.parent===window)return;
 document.documentElement.classList.add('pp-embedded');
 var lastHeight=0,scheduled=false;
-function reportHeight(){scheduled=false;var height=Math.ceil(Math.max(document.body.getBoundingClientRect().height,document.body.scrollHeight))+4;if(height===lastHeight||height<100)return;lastHeight=height;window.parent.postMessage({type:'professors-results-height',height:height},'*');}
+function reportHeight(){scheduled=false;var calendar=document.body.classList.contains('pp-calendar-only')&&document.getElementById('pp-shared-calendar');var height=Math.ceil(calendar?calendar.getBoundingClientRect().height:Math.max(document.body.getBoundingClientRect().height,document.body.scrollHeight))+4;if(height===lastHeight||height<100)return;lastHeight=height;window.parent.postMessage({type:'professors-results-height',height:height},'*');}
 function scheduleReport(){if(scheduled)return;scheduled=true;requestAnimationFrame(reportHeight);}
 if('ResizeObserver' in window)new ResizeObserver(scheduleReport).observe(document.body);
 window.addEventListener('load',scheduleReport);
