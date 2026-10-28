@@ -462,4 +462,60 @@ a:focus-visible,button:focus-visible,select:focus-visible{outline-color:#00864b}
 
 
 
+
+<style id="pp-chart-emphasis">
+#chart-box{
+ padding:0;
+ border:2px solid #123d2a;
+ border-radius:14px;
+ overflow:hidden;
+ background:#fff;
+ box-shadow:0 8px 24px rgba(18,61,42,.10);
+}
+#chart-box>.section-top{
+ margin:0;
+ padding:22px 24px;
+ gap:16px;
+ background:#123d2a;
+ border-bottom:4px solid #00df80;
+}
+#chart-box #chart-heading{
+ color:#fff;
+ font-size:clamp(19px,2.5vw,25px);
+ line-height:1.25;
+}
+#chart-box>.section-top p{color:#d6e9dd;margin-top:7px}
+#chart-total{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ padding:12px 18px;
+ border:1px solid #92d9af;
+ border-radius:9px;
+ background:#e0f5e8;
+ font-size:clamp(23px,3vw,32px);
+ line-height:1.15;
+ font-weight:900;
+ white-space:nowrap;
+}
+#chart-total.negative{background:#fbe7e7;border-color:#efc4c7}
+#chart-total.neutral{background:#fff2d4;border-color:#e4cf98}
+#chart-area{padding:22px 20px 8px;background:#fff}
+#chart-box .chart-svg path{stroke-width:3.5}
+#chart-box .chart-caption{
+ margin:0;
+ padding:15px 24px 18px;
+ border-top:1px solid #d8e4dc;
+ background:#eef8f1;
+ color:#3c5546;
+ line-height:1.6;
+}
+@media(max-width:600px){
+ #chart-box>.section-top{padding:18px 16px;align-items:flex-start}
+ #chart-total{padding:10px 14px}
+ #chart-area{padding:15px 5px 8px}
+ #chart-box .chart-caption{padding:13px 16px}
+}
+</style>
+
 </body></html>
