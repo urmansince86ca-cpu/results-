@@ -1,0 +1,392 @@
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f7f9f8;color:#15231c;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+a{color:inherit;touch-action:manipulation}
+a:focus-visible,summary:focus-visible{outline:3px solid #00df80;outline-offset:3px}
+.pp-site{width:100%;overflow:hidden}
+.pp-wrap{max-width:1180px;margin:auto;padding:0 22px}
+.pp-section{padding:42px 0}
+.pp-section h2{font-size:clamp(25px,3.5vw,36px);line-height:1.2;letter-spacing:-.8px;margin:8px 0 12px}
+.pp-section p{color:#45594c;line-height:1.65}
+.pp-eyebrow{font-size:12px;font-weight:900;letter-spacing:1.5px;color:#00864b;text-transform:uppercase}
+.pp-muted{font-size:13px;color:#586b60;line-height:1.6}
+.pp-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 19px;min-height:48px;border-radius:11px;background:#123d2a;color:#fff;border:2px solid #123d2a;text-decoration:none;font-weight:900;font-size:14px;text-align:center;line-height:1.4;transition:transform .2s,background .2s}
+.pp-btn:hover{background:#205039;border-color:#00864b;color:#fff;transform:translateY(-1px)}
+.pp-btn-green{background:#00df80;color:#062a19;border-color:#00c776}
+.pp-btn-green:hover{background:#4af5a9;color:#062a19}
+.pp-btn-white{background:#fff;color:#123d2a;border-color:#bfd5c6}
+.pp-btn-white:hover{background:#edf8f0;color:#123d2a}
+
+/* MAIN HERO */
+.pp-hero{position:relative;isolation:isolate;background:#061d13;color:#fff;overflow:hidden}
+.pp-hero:before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 22% 52%,rgba(0,223,128,.22),transparent 40%),radial-gradient(circle at 85% 20%,rgba(0,140,75,.16),transparent 36%),repeating-linear-gradient(125deg,transparent 0 65px,rgba(0,223,128,.025) 66px 67px)}
+.pp-hero:after{content:"";position:absolute;inset:0;z-index:-1;opacity:.25;background:linear-gradient(90deg,#061d13,transparent 40%,#061d13)}
+.pp-hero-inner{max-width:1260px;margin:auto;min-height:455px;display:grid;grid-template-columns:36% minmax(0,1fr) 240px;align-items:center;gap:20px;padding:24px 24px 0}
+.pp-professor{height:100%;min-height:400px;display:flex;align-items:end;position:relative}
+.pp-professor img{display:block;width:100%;height:410px;object-fit:cover;object-position:center top;border-radius:24px 24px 0 0;box-shadow:0 0 50px rgba(0,223,128,.13)}
+.pp-professor-tag{position:absolute;left:8px;top:20px;color:#9affb8;font-size:15px;line-height:1.15;font-weight:950;letter-spacing:1px;text-transform:uppercase;transform:rotate(-7deg);text-shadow:0 3px 12px #000}
+.pp-hero-content{padding:20px 0 32px;min-width:0}
+.pp-hero-title{font-size:clamp(37px,5.6vw,79px);font-weight:1000;line-height:.94;letter-spacing:-2px;margin:0 0 22px;text-transform:uppercase;color:#fff;text-shadow:0 4px 10px rgba(0,0,0,.35)}
+.pp-hero-title span{display:block;color:#00df80;font-style:italic;letter-spacing:-2px}
+.pp-hero-sub{font-size:13px;letter-spacing:1.3px;font-weight:800;color:#d9f5e4;margin:0 0 21px;line-height:1.6}
+.pp-sports{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 20px}
+.pp-sport{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,.65);border:1px solid rgba(0,223,128,.18);font-size:12px;font-weight:900;color:#fff;white-space:nowrap}
+.pp-sport span{font-size:18px}
+.pp-hero-cta{display:flex;flex-direction:column;gap:9px;max-width:520px}
+.pp-hero-cta .pp-btn{min-height:58px;font-size:17px}
+.pp-hero-small{font-size:12px;color:#cfe9d8;text-align:center;margin:0}
+.pp-side{display:flex;flex-direction:column;gap:25px;padding-bottom:32px}
+.pp-brush{background:#70ed71;color:#082b18;padding:20px 15px;transform:rotate(-3deg);font-size:clamp(18px,2vw,26px);font-weight:1000;font-style:italic;line-height:1.25;text-align:center;box-shadow:8px 10px 0 rgba(0,0,0,.3)}
+.pp-dubclub{display:block;padding:19px 16px;background:#030d09;border:2px solid #00864b;border-radius:15px;color:#fff;text-decoration:none}
+.pp-dubclub strong{display:block;font-size:23px;margin-bottom:6px}
+.pp-dubclub small{display:block;color:#00df80;font-size:12px;font-weight:900}
+.pp-dubclub span{display:block;margin-top:12px;font-size:13px;color:#f1fff5}
+.pp-dubclub:hover{border-color:#00df80}
+
+/* BENEFITS */
+.pp-benefits{background:#f0f8f3;border:1px solid #d6e8dd;border-radius:0 0 18px 18px;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:24px 16px;gap:12px}
+.pp-benefit{display:flex;gap:12px;align-items:flex-start;padding:9px 14px;border-right:1px solid #d0e0d6}
+.pp-benefit:last-child{border:0}
+.pp-benefit-icon{display:flex;align-items:center;justify-content:center;width:42px;height:42px;flex-shrink:0;border-radius:50%;background:#07351f;color:#fff;font-size:20px}
+.pp-benefit strong{display:block;color:#123d2a;font-size:14px;line-height:1.3}
+.pp-benefit small{display:block;color:#586b60;font-size:12px;line-height:1.5;margin-top:4px}
+
+/* DARK PRICING */
+.pp-pricing-shell{background:#091d14;border:1px solid #315b43;border-radius:20px;padding:30px 24px;box-shadow:0 12px 30px rgba(9,29,20,.13)}
+.pp-center{text-align:center}
+.pp-pricing-shell .pp-eyebrow{color:#00df80}
+.pp-pricing-shell .pp-center h2{color:#fff}
+.pp-pricing-shell .pp-center .pp-muted{max-width:660px;margin:0 auto 25px;color:#c5dfcf}
+.pp-included{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 25px;padding:15px 18px;background:#143725;border:1px solid #326a49;border-radius:12px;margin-bottom:24px;font-size:13px;font-weight:800;color:#e0f7e7}
+.pp-billing{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.pp-plan-group{background:#173c2b;border:1px solid #39825a;border-radius:17px;padding:22px;min-width:0;box-shadow:0 5px 20px rgba(0,0,0,.15)}
+.pp-plan-group h3{font-size:24px;color:#fff;margin:12px 0 8px}
+.pp-plan-label{display:inline-block;background:#00df80;color:#062a19;font-size:11px;font-weight:900;letter-spacing:.8px;padding:8px 12px;border-radius:6px}
+.pp-pricing-shell .pp-plan-description{font-size:14px;margin:0 0 18px;color:#c5dfcf}
+.pp-offer{background:#10291e;border:1px solid #37654b;border-radius:12px;padding:19px 16px;margin-bottom:14px}
+.pp-offer h4{margin:0 0 9px;color:#fff;font-size:18px}
+.pp-price{font-size:30px;font-weight:950;letter-spacing:-.6px;color:#fff}
+.pp-price small{display:block;color:#bdd5c6;font-size:13px;font-weight:600;letter-spacing:0;margin-top:4px}
+.pp-pricing-shell .pp-terms{font-size:13px;line-height:1.6;color:#d0e4d6;margin:10px 0 14px}
+.pp-offer .pp-btn{width:100%;background:#00df80;border-color:#00bd6d;color:#062a19}
+.pp-offer .pp-btn:hover{background:#4af5a9;border-color:#4af5a9;color:#062a19}
+.pp-featured-offer{background:#214b34;border:2px solid #00df80;box-shadow:0 0 0 3px rgba(0,223,128,.06)}
+.pp-featured-tag{font-size:10px;letter-spacing:1px;color:#00df80;font-weight:900;margin-bottom:10px}
+.pp-long-term{margin-top:12px;border-top:1px solid #39825a;padding-top:15px}
+.pp-long-term summary{cursor:pointer;padding:13px;border-radius:9px;background:#244b36;border:1px solid #39825a;font-size:14px;font-weight:800;color:#e8fff0}
+.pp-long-term[open] summary{margin-bottom:15px}
+.pp-pricing-shell .pp-plan-footnote{font-size:12px;line-height:1.7;color:#c5dfcf}
+
+/* VIP RESULTS */
+.pp-vip-results{max-width:680px;margin:25px auto 0;background:#061d13;border:2px solid #00864b;border-radius:16px;overflow:hidden}
+.pp-vip-results>img{display:block;width:100%;height:auto}
+.pp-vip-results-footer{text-align:center;padding:18px}
+.pp-vip-results-footer p{font-size:12px;color:#c5dfcf;line-height:1.6;margin:12px 0 0}
+
+/* TRIAL */
+.pp-trial{background:#123d2a;border:2px solid #00864b;border-radius:16px;padding:24px;color:#fff;margin-top:25px}
+.pp-trial h2{color:#fff;font-size:24px;margin:6px 0 10px}
+.pp-trial p{color:#dceee3;font-size:14px}
+.pp-trial .pp-eyebrow{color:#00df80}
+.pp-trial .pp-muted{color:#cce8d7;font-size:12px}
+
+/* RESULTS */
+.pp-results-frame{display:block;width:100%;height:740px;margin-top:18px;border:2px solid #123d2a;background:#f7f9f8}
+.pp-results-links{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.pp-results-links .pp-btn{flex:1;min-width:180px}
+.pp-closing{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px;border:2px solid #b8dcc4;border-radius:14px;background:#eaf6ee;margin:20px 0}
+.pp-closing h2{font-size:25px;margin:0 0 8px;color:#123d2a}
+.pp-risk{font-size:12px;color:#596b60;line-height:1.6;padding-bottom:25px}
+
+/* MOBILE */
+@media(max-width:1050px){
+.pp-hero-inner{grid-template-columns:32% minmax(0,1fr);gap:15px}
+.pp-side{grid-column:1/-1;flex-direction:row;justify-content:center;align-items:center;padding:0 0 22px}
+.pp-brush{max-width:290px}
+.pp-dubclub{min-width:250px}
+.pp-hero-title{font-size:clamp(35px,6vw,65px)}
+}
+@media(max-width:700px){
+.pp-hero-inner{display:flex;flex-direction:column;padding:0 16px 22px;gap:0}
+.pp-professor{width:100%;min-height:0;height:auto;justify-content:center;padding-top:16px}
+.pp-professor img{width:min(100%,310px);height:245px;object-fit:cover;object-position:center 25%;border-radius:15px}
+.pp-professor-tag{left:3%;top:24px;font-size:12px}
+.pp-hero-content{text-align:center;padding:18px 0 20px;width:100%}
+.pp-hero-title{font-size:clamp(40px,11vw,70px);margin-bottom:14px;letter-spacing:-1px}
+.pp-hero-title span{letter-spacing:-1px}
+.pp-hero-sub{font-size:11px;letter-spacing:.6px}
+.pp-sports{justify-content:center}
+.pp-hero-cta{margin:auto}
+.pp-side{width:100%;padding:0;flex-direction:column;gap:14px}
+.pp-brush{font-size:20px;width:min(100%,300px)}
+.pp-dubclub{width:min(100%,360px)}
+.pp-benefits{grid-template-columns:repeat(2,minmax(0,1fr));border-radius:0 0 15px 15px;padding:13px}
+.pp-benefit:nth-child(2){border-right:0}
+.pp-benefit{padding:10px 6px}
+.pp-billing{grid-template-columns:1fr}
+.pp-section{padding:30px 0}
+.pp-wrap{padding:0 16px}
+.pp-pricing-shell{padding:22px 14px;border-radius:15px}
+.pp-plan-group{padding:15px}
+.pp-closing{flex-direction:column;align-items:stretch}
+.pp-closing .pp-btn{width:100%}
+}
+@media(max-width:390px){
+.pp-benefits{grid-template-columns:1fr}
+.pp-benefit{border-right:0;border-bottom:1px solid #d0e0d6}
+.pp-benefit:last-child{border-bottom:0}
+.pp-plan-group{padding:12px}
+.pp-sample-row{grid-template-columns:45px 1fr 30px;padding:12px 8px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.pp-btn{transition:none}
+}
+</style>
+
+<div class="pp-site">
+
+<!-- MAIN HERO -->
+<section class="pp-hero" aria-label="Professor's Picks All Sports VIP">
+<div class="pp-hero-inner">
+<div class="pp-professor">
+<div class="pp-professor-tag">ALL<br>SPORTS<br>PICKS</div>
+<img src="https://urmansince86ca-cpu.github.io/results-/00.jpg"
+alt="Professor's Picks younger Professor mascot"
+width="420" height="420" loading="eager">
+</div>
+
+<div class="pp-hero-content">
+<h1 class="pp-hero-title">PROFESSOR'S<span>PICKS</span></h1>
+<p class="pp-hero-sub">POSTED ODDS &nbsp; • &nbsp; TRANSPARENT RESULTS &nbsp; • &nbsp; ALL SPORTS</p>
+
+<!-- ALL TEN SPORTS -->
+<div class="pp-sports">
+<div class="pp-sport"><span>🏈</span> NFL</div>
+<div class="pp-sport"><span>🏀</span> NBA</div>
+<div class="pp-sport"><span>🏒</span> NHL</div>
+<div class="pp-sport"><span>🥊</span> UFC</div>
+<div class="pp-sport"><span>⚾</span> MLB</div>
+<div class="pp-sport"><span>🏆</span> NCAAF</div>
+<div class="pp-sport"><span>🏀</span> NCAAB</div>
+<div class="pp-sport"><span>🥊</span> Boxing</div>
+<div class="pp-sport"><span>⚽</span> Soccer</div>
+<div class="pp-sport"><span>🎾</span> Tennis</div>
+</div>
+
+<div class="pp-hero-cta">
+<a class="pp-btn pp-btn-green" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">GO VIP FOR 1 DAY — $12.99 →</a>
+<p class="pp-hero-small">One-time payment &nbsp; • &nbsp; No auto-renewal</p>
+</div>
+</div>
+
+<div class="pp-side">
+<div class="pp-brush">REAL PICKS.<br>REAL ODDS.<br>REAL RESULTS.</div>
+<a class="pp-dubclub" href="https://dubclub.win/follow/professorspicks/" target="_blank" rel="noopener noreferrer">
+<strong>🟢 DubClub</strong>
+<small>PROFESSOR'S PICKS</small>
+<span>Follow for Free Picks →</span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- BENEFITS -->
+<section class="pp-benefits" aria-label="VIP benefits">
+<div class="pp-benefit">
+<div class="pp-benefit-icon">▤</div>
+<div><strong>All-sports selections</strong><small>NFL, NBA, NCAAB, NHL, UFC, Boxing, MLB, NCAAF, Soccer, Tennis &amp; more</small></div>
+</div>
+<div class="pp-benefit">
+<div class="pp-benefit-icon">↗</div>
+<div><strong>Posted odds &amp; unit ratings</strong><small>See the odds recorded with each release</small></div>
+</div>
+<div class="pp-benefit">
+<div class="pp-benefit-icon">➤</div>
+<div><strong>Private Telegram delivery</strong><small>VIP selections sent to your paid channel</small></div>
+</div>
+<div class="pp-benefit">
+<div class="pp-benefit-icon">🏆</div>
+<div><strong>Transparent results</strong><small>Track wins, losses and units on our results page</small></div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section class="pp-section" id="plans">
+<div class="pp-wrap">
+<div class="pp-pricing-shell">
+<div class="pp-center">
+<div class="pp-eyebrow">VIP ACCESS &amp; PRICING</div>
+<h2>Same VIP Picks. Choose Your Billing.</h2>
+<p class="pp-muted">Every plan includes the same All Sports VIP service during your active access period.</p>
+</div>
+
+<div class="pp-included">
+<span>✓ All-sports selections</span>
+<span>✓ Posted odds + unit ratings</span>
+<span>✓ Private Telegram delivery</span>
+</div>
+
+<div class="pp-billing">
+
+<!-- ONE-TIME PLANS -->
+<div class="pp-plan-group">
+<span class="pp-plan-label">ONE-TIME PAYMENT</span>
+<h3>Pay once. No renewal.</h3>
+<p class="pp-plan-description">Access ends when your pass expires. You will not be automatically charged again.</p>
+
+<article class="pp-offer pp-featured-offer">
+<div class="pp-featured-tag">TRY VIP · 24 HOURS</div>
+<h4>1-Day All Sports VIP</h4>
+<div class="pp-price">$12.99<small>one payment · 24-hour access</small></div>
+<p class="pp-terms">No subscription. No automatic renewal.</p>
+<a class="pp-btn pp-btn-green" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">Go VIP for 1 Day — $12.99 →</a>
+</article>
+
+<article class="pp-offer">
+<h4>7-Day All Sports VIP</h4>
+<div class="pp-price">$39.99<small>one payment · 7-day access</small></div>
+<p class="pp-terms">Pay once. Access ends after 7 days.</p>
+<a class="pp-btn" href="https://buy.stripe.com/6oU5kEbLi4k747O3RWg7e0d" target="_top">Buy 7 Days — $39.99 →</a>
+</article>
+
+<article class="pp-offer">
+<h4>30-Day All Sports VIP</h4>
+<div class="pp-price">$119<small>one payment · 30-day access</small></div>
+<p class="pp-terms">Pay once. Access ends after 30 days.</p>
+<a class="pp-btn" href="https://buy.stripe.com/4gM7sMg1ydUHawc4W0g7e0e" target="_top">Buy 30 Days — $119 →</a>
+</article>
+
+<details class="pp-long-term">
+<summary>Longer one-time passes · 12 months / 3 years</summary>
+<article class="pp-offer">
+<h4>12-Month All Sports VIP</h4>
+<div class="pp-price">$999<small>paid upfront · 12-month access</small></div>
+<p class="pp-terms">One payment. No automatic renewal.</p>
+<a class="pp-btn" href="https://buy.stripe.com/5kQeVecPm2bZgUA2NSg7e0k" target="_top">Buy 12 Months — $999 →</a>
+</article>
+<article class="pp-offer">
+<h4>3-Year All Sports VIP</h4>
+<div class="pp-price">$1,999<small>paid upfront · 3-year access</small></div>
+<p class="pp-terms">One payment. No automatic renewal.</p>
+<a class="pp-btn" href="https://buy.stripe.com/dRmaEYg1y7wjawcfAEg7e0l" target="_top">Buy 3 Years — $1,999 →</a>
+</article>
+</details>
+</div>
+
+<!-- AUTO-RENEW PLANS -->
+<div class="pp-plan-group">
+<span class="pp-plan-label">AUTO-RENEW SUBSCRIPTIONS</span>
+<h3>Keep VIP access going.</h3>
+<p class="pp-plan-description">Your selected plan automatically renews at the price below until you cancel.</p>
+
+<article class="pp-offer">
+<h4>7-Day All Sports VIP</h4>
+<div class="pp-price">$39.99<small>charged every 7 days</small></div>
+<p class="pp-terms"><strong>Automatic renewal:</strong> $39.99 today and every 7 days until canceled.</p>
+<a class="pp-btn pp-btn-green" href="https://buy.stripe.com/7sYdRa4iQ8An1ZG1JOg7e0c" target="_top">Subscribe — $39.99 / 7 Days →</a>
+</article>
+
+<article class="pp-offer">
+<h4>30-Day All Sports VIP</h4>
+<div class="pp-price">$99<small>charged every 30 days</small></div>
+<p class="pp-terms"><strong>Automatic renewal:</strong> $99 today and every 30 days until canceled.</p>
+<a class="pp-btn pp-btn-green" href="https://buy.stripe.com/cNi9AU5mUbMzgUAewAg7e09" target="_top">Subscribe — $99 / 30 Days →</a>
+</article>
+
+<p class="pp-plan-footnote">Prefer to pay once? Choose a pass in the One-Time Payment section. Review your selected price and billing terms in Stripe before paying.</p>
+</div>
+</div>
+</div>
+
+<!-- VIP RESULTS GRAPHIC -->
+<section class="pp-vip-results" aria-label="October 28 VIP results">
+<img src="https://urmansince86ca-cpu.github.io/results-/vip-results-2026-10-28.png" alt="Professor's Picks VIP results for October 28, 2026: 3 wins, 0 losses, plus 9 units. Colorado game over 6 at -145, Jacksonville State moneyline at -149, and Chicago Bulls plus 8 at -122. Each won 3 units." width="1254" height="1254" loading="lazy">
+<div class="pp-vip-results-footer">
+<a class="pp-btn pp-btn-green" href="https://professorspicks.com/results" target="_top">View Full Results →</a>
+<p>October 28, 2026 results. One day's performance; see the full record through the link. Past results do not guarantee future performance.</p>
+</div>
+</section>
+
+<!-- DUBCLUB TRIAL -->
+<section class="pp-trial">
+<div class="pp-eyebrow">ANOTHER WAY TO GET STARTED</div>
+<h2>Want to try Professor's Picks first?</h2>
+<p>Explore our free picks or check out the 3-day VIP trial offer through DubClub. Prefer no subscription? Our $12.99 one-day pass above is a one-time payment.</p>
+<a class="pp-btn pp-btn-green" href="https://dubclub.win/r/p/pri-8a93u/?checkout=1" target="_blank" rel="noopener noreferrer">Explore the 3-Day Trial →</a>
+<p class="pp-muted">DubClub checkout requires a payment card. The offer renews at $39.99 per week after the 3-day trial unless canceled before renewal. Review the final terms at checkout.</p>
+</section>
+
+</div>
+</section>
+
+<!-- RESULTS CALENDAR -->
+<section class="pp-section" id="tracked-record">
+<div class="pp-wrap">
+<div class="pp-eyebrow">TRANSPARENT TRACKING</div>
+<h2>Review Our Results.</h2>
+<p>See the daily results calendar, wins, losses and recorded units before choosing VIP.</p>
+
+<iframe id="packages-results-calendar"
+class="pp-results-frame"
+src="https://urmansince86ca-cpu.github.io/results-/?view=calendar"
+title="Professors Picks daily results calendar"
+loading="lazy"></iframe>
+
+<div class="pp-results-links">
+<a class="pp-btn pp-btn-white" href="https://professorspicks.com/results" target="_top">View Full Results →</a>
+<a class="pp-btn" href="https://dubclub.win/share/capper/139935/" target="_blank" rel="noopener noreferrer">Verify on DubClub →</a>
+</div>
+<p class="pp-muted">DubClub is a separate tracking source and may include different selections or stakes. Past performance does not guarantee future results.</p>
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="pp-wrap">
+<section class="pp-closing">
+<div>
+<h2>Start with one day of VIP.</h2>
+<p class="pp-muted">$12.99 once · 24 hours · no automatic renewal</p>
+</div>
+<a class="pp-btn pp-btn-green" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">Go VIP for 1 Day →</a>
+</section>
+<p class="pp-risk">All wagers involve risk. Past results do not guarantee future performance.</p>
+</div>
+
+</div>
+
+<!-- GITHUB CALENDAR HEIGHT SYNC -->
+<script>
+(function(){
+var calendarOrigin='https://urmansince86ca-cpu.github.io';
+var frame=document.getElementById('packages-results-calendar');
+
+window.addEventListener('message',function(event){
+if(event.origin!==calendarOrigin)return;
+if(!event.data||event.data.type!=='professors-results-height')return;
+var height=Number(event.data.height);
+if(!Number.isFinite(height)||height<100||height>20000)return;
+if(frame&&event.source===frame.contentWindow){
+frame.style.height=(Math.ceil(height)+4)+'px';
+}
+});
+
+function requestHeight(){
+if(frame&&frame.contentWindow){
+frame.contentWindow.postMessage(
+{type:'professors-results-measure'},
+calendarOrigin
+);
+}
+}
+
+if(frame){
+frame.addEventListener('load',requestHeight);
+window.addEventListener('resize',requestHeight);
+requestHeight();
+}
+})();
+</script>
