@@ -214,8 +214,8 @@ body.pp-calendar-only> *{display:none!important}body.pp-calendar-only>#pp-shared
         <div class="bankroll-tracker">
             <div class="bankroll-label">October 2026 · DubClub Reported Net</div>
             <div class="bankroll-value">+187.00u</div>
-            <div class="bankroll-label" style="margin-top:5px">2026 Estimated Net · Website Ledger</div>
-            <div class="bankroll-value" id="headerNetProfit">+219.52u</div>
+            <div class="bankroll-label" style="margin-top:5px">2026 Estimated Combined Net · Ledger + DubClub</div>
+            <div class="bankroll-value" id="headerNetProfit">+406.52u</div>
         </div>
     </header>
 <div class="results-shell">
@@ -325,7 +325,7 @@ function renderAutoPending(){
 function refreshAutoResults(){
  const tabs=document.getElementById('sport-tabs');tabs.replaceChildren();
  Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport)),button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport===selectedSport));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;document.getElementById('year-filter').value='2026';document.getElementById('month-filter').value='all';limit=50;render();});tabs.appendChild(button);});
- const totals=stats(picks),header=document.getElementById('headerNetProfit');header.textContent=format(totals.net);header.className='bankroll-value '+tone(totals.net);
+ const totals=stats(picks),header=document.getElementById('headerNetProfit');header.textContent=format(totals.net+18700);header.className='bankroll-value '+tone(totals.net+18700);
  render();renderSharedCalendar();
 }
 const sportNames={all:'All sports',NFL:'NFL',NCAAF:'NCAAF',MLB:'MLB',NBA:'NBA',WNBA:'WNBA',NCAAB:'NCAAB',NHL:'NHL',SOCCER:'Soccer',MMA:'MMA / UFC',TENNIS:'Tennis',GOLF:'Golf',CFL:'CFL',NASCAR:'NASCAR'};
@@ -337,8 +337,8 @@ function tone(n){return n>0?'positive':n<0?'negative':'neutral';}
 function subset(sport){return sport==='all'?picks:picks.filter(p=>p.sport===sport);}
 function stats(list){const v={net:0,w:0,l:0,p:0};list.forEach(p=>{if(Number.isFinite(p.cents))v.net+=p.cents;if(p.outcome==='WIN')v.w++;else if(p.outcome==='LOSS')v.l++;else v.p++;});return v;}
 const annualStats=stats(picks);
-$('headerNetProfit').textContent=format(annualStats.net);
-$('headerNetProfit').className='bankroll-value '+tone(annualStats.net);
+$('headerNetProfit').textContent=format(annualStats.net+18700);
+$('headerNetProfit').className='bankroll-value '+tone(annualStats.net+18700);
 const tabWrap=$('sport-tabs');
 Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport)),button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport==='all'));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;$('year-filter').value='2026';$('month-filter').value='all';limit=50;render();});tabWrap.appendChild(button);});
 function drawChart(list){
