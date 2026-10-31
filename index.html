@@ -324,11 +324,12 @@ function renderAutoPending(){
 }
 function refreshAutoResults(){
  const tabs=document.getElementById('sport-tabs');tabs.replaceChildren();
- Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport)),button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport===selectedSport));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;document.getElementById('year-filter').value='2026';document.getElementById('month-filter').value='all';limit=50;render();});tabs.appendChild(button);});
- const totals=stats(picks),header=document.getElementById('headerNetProfit');header.textContent=format(totals.net+18700);header.className='bankroll-value '+tone(totals.net+18700);
+ Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport));if(sport==='all')st.net+=DUBCLUB_OCT_2026_NET;const button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport===selectedSport));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;document.getElementById('year-filter').value='2026';document.getElementById('month-filter').value='all';limit=50;render();});tabs.appendChild(button);});
+ const totals=stats(picks),header=document.getElementById('headerNetProfit');header.textContent=format(totals.net+DUBCLUB_OCT_2026_NET);header.className='bankroll-value '+tone(totals.net+DUBCLUB_OCT_2026_NET);
  render();renderSharedCalendar();
 }
 const sportNames={all:'All sports',NFL:'NFL',NCAAF:'NCAAF',MLB:'MLB',NBA:'NBA',WNBA:'WNBA',NCAAB:'NCAAB',NHL:'NHL',SOCCER:'Soccer',MMA:'MMA / UFC',TENNIS:'Tennis',GOLF:'Golf',CFL:'CFL',NASCAR:'NASCAR'};
+const DUBCLUB_OCT_2026_NET=18700; // October aggregate, not individual website picks
 const history={2025:21440,2024:18115,2023:13460,2022:26256};
 let selectedSport='all',limit=50;
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -337,12 +338,12 @@ function tone(n){return n>0?'positive':n<0?'negative':'neutral';}
 function subset(sport){return sport==='all'?picks:picks.filter(p=>p.sport===sport);}
 function stats(list){const v={net:0,w:0,l:0,p:0};list.forEach(p=>{if(Number.isFinite(p.cents))v.net+=p.cents;if(p.outcome==='WIN')v.w++;else if(p.outcome==='LOSS')v.l++;else v.p++;});return v;}
 const annualStats=stats(picks);
-$('headerNetProfit').textContent=format(annualStats.net+18700);
+$('headerNetProfit').textContent=format(annualStats.net+DUBCLUB_OCT_2026_NET);
 $('headerNetProfit').className='bankroll-value '+tone(annualStats.net+18700);
 const tabWrap=$('sport-tabs');
 Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport)),button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport==='all'));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;$('year-filter').value='2026';$('month-filter').value='all';limit=50;render();});tabWrap.appendChild(button);});
 function drawChart(list){
-const days=new Map();list.forEach(p=>{if(Number.isFinite(p.cents))days.set(p.date,(days.get(p.date)||0)+p.cents);});const sorted=[...days.entries()].sort((a,b)=>a[0].localeCompare(b[0]));let sum=0;const pts=[{date:'2026-01-01',units:0}];sorted.forEach(([date,value])=>{sum+=value;pts.push({date,units:sum/100});});
+const days=new Map();list.forEach(p=>{if(Number.isFinite(p.cents))days.set(p.date,(days.get(p.date)||0)+p.cents);});if(selectedSport==='all')days.set('2026-10-31',(days.get('2026-10-31')||0)+DUBCLUB_OCT_2026_NET);const sorted=[...days.entries()].sort((a,b)=>a[0].localeCompare(b[0]));let sum=0;const pts=[{date:'2026-01-01',units:0}];sorted.forEach(([date,value])=>{sum+=value;pts.push({date,units:sum/100});});
 const mobile=window.innerWidth<600,W=mobile?500:1000,H=270,L=65,R=20,T=22,B=42,start=Date.UTC(2026,0,1),end=Date.UTC(2026,11,31),values=pts.map(p=>p.units),low=Math.min(0,...values),high=Math.max(0,...values),pad=Math.max((high-low)*.12,2),min=low-pad,max=high+pad;
 const x=date=>L+(Date.parse(date+'T00:00:00Z')-start)/(end-start)*(W-L-R),y=value=>T+(max-value)/(max-min)*(H-T-B);
 let grid='';for(let i=0;i<=4;i++){const v=min+(max-min)*i/4,yy=y(v);grid+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="#242736"/><text x="'+(L-10)+'" y="'+(yy+4)+'" fill="#aeb6c9" font-size="'+(mobile?16:12)+'" text-anchor="end">'+v.toFixed(0)+'u</text>';}
@@ -355,7 +356,7 @@ function render(){
 const year=$('year-filter').value,isCurrent=year==='2026';$('month-filter').disabled=!isCurrent;$('month-buttons').hidden=!isCurrent;Array.from($('month-buttons').children).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.month===$('month-filter').value)));$('chart-box').hidden=!isCurrent;$('pick-ledger').hidden=!isCurrent;$('year-message').hidden=isCurrent;
 document.querySelectorAll('.sport-tab').forEach(b=>b.setAttribute('aria-pressed',String(isCurrent&&b.dataset.sport===selectedSport)));
 if(!isCurrent){$('season-ledger').textContent=year+' historical summary';$('ledger-description').textContent='Provided season figure';$('year-message').textContent=year+' net units: '+format(history[year])+'. This is a supplied historical summary. Individual picks for this year have not been imported.';return;}
-const all=subset(selectedSport),st=stats(all),month=$('month-filter').value,filtered=month==='all'?all:all.filter(p=>p.date.slice(5,7)===month),shown=filtered.slice(0,limit);
+const all=subset(selectedSport),st=stats(all);if(selectedSport==='all')st.net+=DUBCLUB_OCT_2026_NET;const month=$('month-filter').value,filtered=month==='all'?all:all.filter(p=>p.date.slice(5,7)===month),shown=filtered.slice(0,limit);
 $('net-summary').textContent=format(st.net);$('net-summary').className='summary-number '+tone(st.net);$('record-summary').textContent=st.w+'–'+st.l+'–'+st.p;$('rate-summary').textContent=st.w+st.l?(100*st.w/(st.w+st.l)).toFixed(1)+'%':'—';$('count-summary').textContent=all.length.toLocaleString('en-US');
 $('season-ledger').textContent='Results ledger · '+sportNames[selectedSport];$('ledger-description').textContent='Choose any month below, or use Load more to continue through all results. Each row shows the pick, result, and net units.';
 $('ledger-body').innerHTML=shown.length?shown.map((p,i)=>{const dateHeading=i===0||shown[i-1].date!==p.date?'<tr class="date-divider"><td colspan="5">'+esc(new Date(p.date+'T12:00:00Z').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric',timeZone:'UTC'}))+'</td></tr>':'';return dateHeading+'<tr><td data-label="Sport"><span class="badge">'+esc(sportNames[p.sport]||p.sport)+'</span></td><td data-label="Date">'+esc(p.date)+'</td><td data-label="Pick"><span class="pick-text">'+esc(p.pick)+'</span></td><td data-label="Result" class="'+(p.outcome==='WIN'?'positive':p.outcome==='LOSS'?'negative':'neutral')+'">'+esc(p.outcome==='WIN'?'Win':p.outcome==='LOSS'?'Loss':'Push')+'</td><td data-label="Net Units" class="'+tone(p.cents)+'">'+(Number.isFinite(p.cents)?format(p.cents)+(p.estimated?'*':''):'')+'</td></tr>';}).join(''):'<tr><td colspan="5" class="empty-state">No recorded picks match this filter.</td></tr>';
@@ -371,7 +372,7 @@ function renderSharedCalendar(){
  const rows=picks.filter(p=>p.date.slice(0,7)===calendarYear+'-'+String(calendarMonth+1).padStart(2,'0'));
  const daily=new Map();rows.forEach(p=>daily.set(p.date,(daily.get(p.date)||0)+(Number.isFinite(p.cents)?p.cents:0)));
  document.getElementById('pp-calendar-month').textContent=new Date(Date.UTC(calendarYear,calendarMonth,1)).toLocaleDateString('en-US',{month:'long',year:'numeric',timeZone:'UTC'});
- document.getElementById('pp-calendar-total').textContent=format(stats(rows).net);
+ document.getElementById('pp-calendar-total').textContent=format(stats(rows).net+(calendarYear===2026&&calendarMonth===9?DUBCLUB_OCT_2026_NET:0));
  const grid=document.getElementById('pp-calendar-days');grid.replaceChildren();
  const offset=(new Date(Date.UTC(calendarYear,calendarMonth,1)).getUTCDay()+6)%7;
  for(let i=0;i<offset;i++){const blank=document.createElement('span');blank.setAttribute('aria-hidden','true');grid.appendChild(blank);}
@@ -381,7 +382,7 @@ function renderSharedCalendar(){
  const cell=document.createElement('div');cell.className='pp-dub-day '+(has?(net>0?'win':net<0?'loss':'empty'):'empty');
  const num=document.createElement('strong');num.textContent=day;const value=document.createElement('small');value.textContent=has?format(net):'—';cell.append(num,value);cell.setAttribute('aria-label',key+': '+(has?format(net):'No graded picks recorded'));grid.appendChild(cell);
  }
- const dates=picks.map(p=>p.date).sort();document.getElementById('pp-calendar-note').textContent='Latest graded pick: '+(dates[dates.length-1]||'none')+'. A dash means no graded picks recorded. Pending picks are excluded.';
+ const dates=picks.map(p=>p.date).sort();document.getElementById('pp-calendar-note').textContent='Latest graded pick: '+(dates[dates.length-1]||'none')+'. October 2026 total includes a separate +187u DubClub aggregate not allocated to individual calendar days or sports. A dash means no graded website picks recorded. Pending picks are excluded.';
 }
 document.getElementById('pp-calendar-prev').onclick=()=>{calendarMonth--;if(calendarMonth<0){calendarMonth=11;calendarYear--;}renderSharedCalendar();};
 document.getElementById('pp-calendar-next').onclick=()=>{calendarMonth++;if(calendarMonth>11){calendarMonth=0;calendarYear++;}renderSharedCalendar();};
