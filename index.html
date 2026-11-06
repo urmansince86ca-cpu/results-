@@ -362,9 +362,11 @@ async function loadAutoPicks(){
   }catch(e){statusNode.textContent='Automatic pick sync unavailable ('+e.message+'). Historical results are still displayed.';}
 }
 function renderAutoPending(){
- const wrap=document.getElementById('pp-auto-pending-list');wrap.replaceChildren();document.getElementById('pp-auto-pending').hidden=!autoPending.length;
- if(!autoPending.length){const p=document.createElement('p');p.className='pp-auto-empty';p.textContent='No pending picks in the automated feed.';wrap.appendChild(p);return;}
- for(const p of autoPending){
+ const todayET=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+ const visiblePending=autoPending.filter(p=>/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&p.date>=todayET);
+ const wrap=document.getElementById('pp-auto-pending-list');wrap.replaceChildren();document.getElementById('pp-auto-pending').hidden=!visiblePending.length;
+ if(!visiblePending.length){const p=document.createElement('p');p.className='pp-auto-empty';p.textContent='No pending picks in the automated feed.';wrap.appendChild(p);return;}
+ for(const p of visiblePending){
   const card=document.createElement('article');card.className='pp-auto-card';
   const meta=document.createElement('span');meta.textContent=p.date+' · '+p.sport+(p.visibility?' · '+p.visibility.toUpperCase():'');
   const title=document.createElement('strong');title.textContent=p.pick;
