@@ -302,12 +302,11 @@ picks.push(...novemberItemizedPicks.map(
   })
 ));
 
-/* November 6 results supplied by Professor's Picks: 3-0, +4.50u.
-   Individual units counted once; no separate daily summary. */
+/* November 6 picks are not yet graded. Do not count projected wins or units. */
 picks.push(
-  {date:'2026-11-06',sport:'NCAAB',pick:'Utah -7.5 (bought 0.5 point) (-120) · 3u risked',outcome:'WIN',score:'Reported win',cents:250,estimated:false},
-  {date:'2026-11-06',sport:'NHL',pick:'Detroit Red Wings +1.5 (-215) · 2.15u risked',outcome:'WIN',score:'Reported win',cents:100,estimated:false},
-  {date:'2026-11-06',sport:'NHL',pick:'Moritz Seider 2+ shots on goal (-148) · 1.48u risked',outcome:'WIN',score:'Reported win',cents:100,estimated:false}
+  {date:'2026-11-06',sport:'NCAAB',pick:'Utah -7.5 (bought 0.5 point) (-120) · 3u risked',outcome:'PENDING',score:'Game not final',cents:null,estimated:false},
+  {date:'2026-11-06',sport:'NHL',pick:'Detroit Red Wings +1.5 (-215) · 2.15u risked',outcome:'PENDING',score:'Game not final',cents:null,estimated:false},
+  {date:'2026-11-06',sport:'NHL',pick:'Moritz Seider 2+ shots on goal (-148) · 1.48u risked',outcome:'PENDING',score:'Game not final',cents:null,estimated:false}
 );
 
 const historicalPicks=picks.slice();
@@ -421,7 +420,7 @@ window.addEventListener('resize',()=>{if($('year-filter').value==='2026')drawCha
 let calendarYear=2026,calendarMonth=10;
 function renderSharedCalendar(){
  const rows=picks.filter(p=>p.date.slice(0,7)===calendarYear+'-'+String(calendarMonth+1).padStart(2,'0'));
- const daily=new Map();rows.forEach(p=>daily.set(p.date,(daily.get(p.date)||0)+(Number.isFinite(p.cents)?p.cents:0)));
+ const daily=new Map();rows.forEach(p=>{if(!daily.has(p.date))daily.set(p.date,0);daily.set(p.date,daily.get(p.date)+(Number.isFinite(p.cents)?p.cents:0));});
  document.getElementById('pp-calendar-month').textContent=new Date(Date.UTC(calendarYear,calendarMonth,1)).toLocaleDateString('en-US',{month:'long',year:'numeric',timeZone:'UTC'});
  document.getElementById('pp-calendar-total').textContent=format(stats(rows).net+(calendarYear===2026&&calendarMonth===9?DUBCLUB_OCT_2026_NET:0));
  const grid=document.getElementById('pp-calendar-days');grid.replaceChildren();
@@ -433,7 +432,7 @@ function renderSharedCalendar(){
  const cell=document.createElement('div');cell.className='pp-dub-day '+(has?(net>0?'win':net<0?'loss':'empty'):'empty');
  const num=document.createElement('strong');num.textContent=day;const value=document.createElement('small');value.textContent=has?format(net):'—';cell.append(num,value);cell.setAttribute('aria-label',key+': '+(has?format(net):'No graded picks recorded'));grid.appendChild(cell);
  }
- const dates=picks.map(p=>p.date).sort();document.getElementById('pp-calendar-note').textContent='Latest graded pick: '+(dates[dates.length-1]||'none')+'. October 2026 total includes a separate +187u DubClub aggregate not allocated to individual calendar days or sports. November 1 (+12.90u) and November 2 (+2.20u) are official daily summaries, not itemized graded picks. A dash means no recorded daily results. Pending picks are excluded.';
+ const dates=picks.map(p=>p.date).sort();document.getElementById('pp-calendar-note').textContent='Latest graded pick: '+(dates[dates.length-1]||'none')+'. October 2026 total includes a separate +187u DubClub aggregate not allocated to individual calendar days or sports. November 1 (+12.90u) and November 2 (+1.20u) are currently entered as official daily summaries, not itemized graded picks. A dash means no picks recorded. A 0.00u day may contain pending picks; pending picks are excluded from graded net units.';
 }
 document.getElementById('pp-calendar-prev').onclick=()=>{calendarMonth--;if(calendarMonth<0){calendarMonth=11;calendarYear--;}renderSharedCalendar();};
 document.getElementById('pp-calendar-next').onclick=()=>{calendarMonth++;if(calendarMonth>11){calendarMonth=0;calendarYear++;}renderSharedCalendar();};
