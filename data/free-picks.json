@@ -1,0 +1,40 @@
+{
+  "updated_at": "2026-11-09",
+  "source": "Professor's Picks public free picks; DubClub sync pending",
+  "latest": null,
+  "archive": [
+    {
+      "date": "2026-11-01",
+      "posted_date": "2026-10-25",
+      "sport": "NFL",
+      "selection": "Jacksonville Jaguars 1H -4.5",
+      "odds": -112,
+      "status": "WIN",
+      "net_units": null
+    },
+    {
+      "date": "2026-10-24",
+      "sport": "MMA",
+      "selection": "Keita moneyline",
+      "odds": 124,
+      "status": "LOSS",
+      "net_units": -0.8065
+    },
+    {
+      "date": null,
+      "sport": "MLB",
+      "selection": "SF/ARZ first-five over 4.5",
+      "odds": -110,
+      "status": "WIN",
+      "net_units": 2.7
+    },
+    {
+      "date": null,
+      "sport": "MLB",
+      "selection": "Cubs moneyline",
+      "odds": -105,
+      "status": "LOSS",
+      "net_units": -3.15
+    }
+  ]
+}
