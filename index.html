@@ -291,6 +291,7 @@ const novemberItemizedPicks = [
   ['2026-11-04','NHL','Sharks Over 6',-130,3]
 ];
 
+const nov3Grading={"Stetson +21.5":["LOSS",-100,"South Carolina 81–55 Stetson; lost by 26"],"Duquesne -8.5":["LOSS",-100,"Duquesne 78–71 Purdue Fort Wayne; won by 7"],"Wagner +21.5":["LOSS",-100,"Boston College 76–50 Wagner; lost by 26"],"Alabama State +34.5":["WIN",69,"Texas A&M 97–66 Alabama State; lost by 31"]};
 const nov4Grading={"Santa Clara -16":["WIN",278,"Santa Clara 95–72 Milwaukee"],"High Point Over 147":["LOSS",-200,"High Point 63–49 Maryland Eastern Shore; 112 total"],"Radford Over 157":["LOSS",-100,"Radford 70–84 California; 154 total"],"Fairleigh Dickinson +29":["LOSS",-100,"FDU 65–99 Butler"],"Celtics -10.5":["LOSS",-300,"Boston 109–102 Milwaukee"],"Rockets -7":["LOSS",-200,"Houston 107–117 Minnesota"],"Grizzlies Under 229":["WIN",100,"Memphis 103–107 Indiana; 210 total"],"Nuggets -4":["WIN",95,"Denver 128–109 Toronto"],"Spurs -11":["LOSS",-300,"San Antonio 112–111 Dallas"],"Sharks Over 6":["WIN",231,"San Jose 2–7 LA Kings; 9 total"]};
 picks.push(...novemberItemizedPicks.map(
   ([date,sport,selection,odds,stake]) => ({
@@ -298,8 +299,9 @@ picks.push(...novemberItemizedPicks.map(
     sport,
     pick:selection+' ('+(odds>0?'+':'')+odds+
          ') · '+stake+'u risked',
-    outcome:'PENDING',
-    cents:null,
+    outcome:(date==='2026-11-03'?nov3Grading[selection]:nov4Grading[selection])?.[0]||'PENDING',
+    cents:(date==='2026-11-03'?nov3Grading[selection]:nov4Grading[selection])?.[1]??null,
+    score:(date==='2026-11-03'?nov3Grading[selection]:nov4Grading[selection])?.[2]||'Not yet verified',
     estimated:false
   })
 ));
@@ -312,7 +314,7 @@ picks.push(
 
 /* November 6 picks are not yet graded. Do not count projected wins or units. */
 picks.push(
-  {date:'2026-11-06',sport:'NCAAB',pick:'Utah -7.5 (bought 0.5 point) (-120) · 3u risked',outcome:'PENDING',score:'Game not final',cents:null,estimated:false},
+  {date:'2026-11-06',sport:'NCAAB',pick:'Utah -7.5 (bought 0.5 point) (-120) · 3u risked',outcome:'WIN',score:'Utah 67–57 Towson; won by 10',cents:250,estimated:false},
   {date:'2026-11-06',sport:'NHL',pick:'Detroit Red Wings +1.5 (-215) · 2.15u risked',outcome:'PENDING',score:'Game not final',cents:null,estimated:false},
   {date:'2026-11-06',sport:'NHL',pick:'Moritz Seider 2+ shots on goal (-148) · 1.48u risked',outcome:'PENDING',score:'Game not final',cents:null,estimated:false}
 );
