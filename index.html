@@ -316,6 +316,28 @@ picks.push(
   {date:'2026-11-06',sport:'NHL',pick:'Moritz Seider 2+ shots on goal (-148) · 1.48u risked',outcome:'PENDING',score:'Game not final',cents:null,estimated:false}
 );
 
+/* November 7–8, 2026 — Telegram releases, itemized for calendar and ledger.
+   Results and official daily net not supplied; remain ungraded to prevent false totals.
+   NFL Sunday games are filed under their November 8 event date, even if posted Nov 7. */
+const weekendTelegramPicks = [
+  ['2026-11-07','NCAAF','UCLA -2.5 (-147) · to win 3u; risk 4.41u'],
+  ['2026-11-07','NCAAF','Baylor 1st half -4 (-115) · to win 2u; risk 2.30u'],
+  ['2026-11-07','NBA','Brooklyn Nets — Michael Porter Jr. 21+ points (-167) · to win 2u; risk 3.34u'],
+  ['2026-11-07','NCAAF','Ole Miss vs Georgia — Ole Miss 1st quarter +0.5 (-110) · risk 1.5u'],
+  ['2026-11-07','NCAAF','Ole Miss vs Georgia — Ole Miss 1st half +1.5 (-110) · risk 1.5u'],
+  ['2026-11-07','NCAAF','Ole Miss vs Georgia — Ole Miss full game +3.5 (-105) · risk 1.5u'],
+  ['2026-11-08','NFL','Atlanta game total OVER 51 · odds not supplied; $300 single stated'],
+  ['2026-11-08','NFL','Cleveland game total OVER 42 · odds not supplied; $300 single stated'],
+  ['2026-11-08','NFL','Chicago game total OVER 46 · odds not supplied; $300 single stated'],
+  ['2026-11-08','NFL','Tampa Bay game total OVER 46 + Cleveland OVER 42 + Atlanta OVER 51 · 3-leg parlay; 1u to win 13u (Telegram)'],
+  ['2026-11-08','NFL','New Orleans Saints — Tyson 2+ receptions (-220) · to win 1u; risk 2.20u'],
+  ['2026-11-08','NFL','New Orleans Saints — Tyson 3+ receptions (+115) · risk 3u'],
+  ['2026-11-08','NFL','Dallas Cowboys vs Indianapolis Colts — 3rd quarter OVER 9.5 (-148) · to win 3u; risk 4.44u']
+];
+picks.push(...weekendTelegramPicks.map(([date,sport,pick])=>({
+  date,sport,pick,outcome:'PENDING',score:'Awaiting verified grading',cents:null,estimated:false
+})));
+
 const historicalPicks=picks.slice();
 const AUTO_REPO='urmansince86ca-cpu/results-';
 const AUTO_DIR='data/picks';
