@@ -343,6 +343,15 @@ picks.push(...weekendTelegramPicks.map(([date,sport,pick])=>{
     cents:grade?.[1]??null,estimated:false};
 }));
 
+/* Keep user-confirmed Tyson settlements prominently marked as graded. */
+picks.forEach(p=>{
+ if(p.date==='2026-11-08'&&p.sport==='NFL'&&p.pick.includes('Tyson 2+ receptions')){
+   p.outcome='WIN';p.cents=100;p.score='GRADED WIN · +1.00u · -220 to win 1u';p.estimated=false;
+ }
+ if(p.date==='2026-11-08'&&p.sport==='NFL'&&p.pick.includes('Tyson 3+ receptions')){
+   p.outcome='WIN';p.cents=345;p.score='GRADED WIN · +3.45u · +115 risk 3u';p.estimated=false;
+ }
+});
 const historicalPicks=picks.slice();
 const AUTO_REPO='urmansince86ca-cpu/results-';
 const AUTO_DIR='data/picks';
@@ -665,4 +674,4 @@ section[aria-labelledby="sport-breakdown"] .section-top p{color:#d2e9da!importan
 #chart-box .chart-caption{background:#eaf6ee!important}
 @media(max-width:600px){.summary-grid{padding:8px!important}}
 </style>
-</body></html>
+<style id="pp-graded-wins-green">.ledger-table td[data-label="Result"].positive,.ledger-table td[data-label="Net Units"].positive{color:#00864b!important;font-weight:900!important}.ledger-table td[data-label="Result"].positive{background:#e7f8ec!important;border-radius:6px}</style></body></html>
