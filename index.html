@@ -410,7 +410,7 @@ function renderAutoPending(){
 function refreshAutoResults(){
  const tabs=document.getElementById('sport-tabs');tabs.replaceChildren();
  Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport));if(sport==='all')st.net+=DUBCLUB_OCT_2026_NET;const button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport===selectedSport));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;document.getElementById('year-filter').value='2026';document.getElementById('month-filter').value='all';limit=50;render();});tabs.appendChild(button);});
- const totals=stats(picks),header=document.getElementById('headerNetProfit');header.textContent=format(totals.net+DUBCLUB_OCT_2026_NET);header.className='bankroll-value '+tone(totals.net+DUBCLUB_OCT_2026_NET);
+ const totals=stats(subset('all')),header=document.getElementById('headerNetProfit');header.textContent=format(totals.net+DUBCLUB_OCT_2026_NET);header.className='bankroll-value '+tone(totals.net+DUBCLUB_OCT_2026_NET);
  render();renderSharedCalendar();
 }
 const sportNames={all:'All sports',NFL:'NFL',NCAAF:'NCAAF',MLB:'MLB',NBA:'NBA',WNBA:'WNBA',NCAAB:'NCAAB',NHL:'NHL',SOCCER:'Soccer',MMA:'MMA / UFC',TENNIS:'Tennis',GOLF:'Golf',CFL:'CFL',NASCAR:'NASCAR'};
@@ -420,15 +420,16 @@ let selectedSport='all',limit=50;
 const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function format(n){return(n>=0?'+':'−')+(Math.abs(n)/100).toFixed(2)+'u';}
 function tone(n){return n>0?'positive':n<0?'negative':'neutral';}
-function subset(sport){return sport==='all'?picks:picks.filter(p=>p.sport===sport);}
-function stats(list){const v={net:0,w:0,l:0,p:0};list.forEach(p=>{if(Number.isFinite(p.cents))v.net+=p.cents;if(p.outcome==='WIN')v.w++;else if(p.outcome==='LOSS')v.l++;else if(p.outcome==='PUSH')v.p++;});return v;}
-const annualStats=stats(picks);
+function subset(sport){const yearPicks=picks.filter(p=>p.date.startsWith('2026-'));return sport==='all'?yearPicks:yearPicks.filter(p=>p.sport===sport);}
+function countedCents(p,list){if(!Number.isFinite(p.cents))return 0;if(p.outcome!=='SUMMARY'&&p.sport!=='ALL'&&list.some(x=>x.date===p.date&&x.outcome==='SUMMARY'&&x.sport==='ALL'))return 0;return p.cents;}
+function stats(list){const v={net:0,w:0,l:0,p:0};list.forEach(p=>{v.net+=countedCents(p,list);if(p.outcome==='WIN')v.w++;else if(p.outcome==='LOSS')v.l++;else if(p.outcome==='PUSH')v.p++;});return v;}
+const annualStats=stats(subset('all'));
 $('headerNetProfit').textContent=format(annualStats.net+DUBCLUB_OCT_2026_NET);
 $('headerNetProfit').className='bankroll-value '+tone(annualStats.net+18700);
 const tabWrap=$('sport-tabs');
 Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport)),button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport==='all'));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;$('year-filter').value='2026';$('month-filter').value='all';limit=50;render();});tabWrap.appendChild(button);});
 function drawChart(list){
-const days=new Map();list.forEach(p=>{if(Number.isFinite(p.cents))days.set(p.date,(days.get(p.date)||0)+p.cents);});if(selectedSport==='all')days.set('2026-10-31',(days.get('2026-10-31')||0)+DUBCLUB_OCT_2026_NET);const sorted=[...days.entries()].sort((a,b)=>a[0].localeCompare(b[0]));let sum=0;const pts=[{date:'2026-01-01',units:0}];sorted.forEach(([date,value])=>{sum+=value;pts.push({date,units:sum/100});});
+const days=new Map();list.forEach(p=>{days.set(p.date,(days.get(p.date)||0)+countedCents(p,list));});if(selectedSport==='all')days.set('2026-10-31',(days.get('2026-10-31')||0)+DUBCLUB_OCT_2026_NET);const sorted=[...days.entries()].sort((a,b)=>a[0].localeCompare(b[0]));let sum=0;const pts=[{date:'2026-01-01',units:0}];sorted.forEach(([date,value])=>{sum+=value;pts.push({date,units:sum/100});});
 const mobile=window.innerWidth<600,W=mobile?500:1000,H=270,L=65,R=20,T=22,B=42,start=Date.UTC(2026,0,1),end=Date.UTC(2026,11,31),values=pts.map(p=>p.units),low=Math.min(0,...values),high=Math.max(0,...values),pad=Math.max((high-low)*.12,2),min=low-pad,max=high+pad;
 const x=date=>L+(Date.parse(date+'T00:00:00Z')-start)/(end-start)*(W-L-R),y=value=>T+(max-value)/(max-min)*(H-T-B);
 let grid='';for(let i=0;i<=4;i++){const v=min+(max-min)*i/4,yy=y(v);grid+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="#242736"/><text x="'+(L-10)+'" y="'+(yy+4)+'" fill="#aeb6c9" font-size="'+(mobile?16:12)+'" text-anchor="end">'+v.toFixed(0)+'u</text>';}
@@ -456,7 +457,7 @@ window.addEventListener('resize',()=>{if($('year-filter').value==='2026')drawCha
 let calendarYear=2026,calendarMonth=10;
 function renderSharedCalendar(){
  const rows=picks.filter(p=>p.date.slice(0,7)===calendarYear+'-'+String(calendarMonth+1).padStart(2,'0'));
- const daily=new Map();rows.forEach(p=>{if(!daily.has(p.date))daily.set(p.date,0);daily.set(p.date,daily.get(p.date)+(Number.isFinite(p.cents)?p.cents:0));});
+ const daily=new Map();rows.forEach(p=>{if(!daily.has(p.date))daily.set(p.date,0);daily.set(p.date,daily.get(p.date)+countedCents(p,rows));});
  document.getElementById('pp-calendar-month').textContent=new Date(Date.UTC(calendarYear,calendarMonth,1)).toLocaleDateString('en-US',{month:'long',year:'numeric',timeZone:'UTC'});
  document.getElementById('pp-calendar-total').textContent=format(stats(rows).net+(calendarYear===2026&&calendarMonth===9?DUBCLUB_OCT_2026_NET:0));
  const grid=document.getElementById('pp-calendar-days');grid.replaceChildren();
@@ -468,7 +469,7 @@ function renderSharedCalendar(){
  const cell=document.createElement('div');cell.className='pp-dub-day '+(has?(net>0?'win':net<0?'loss':'empty'):'empty');
  const num=document.createElement('strong');num.textContent=day;const value=document.createElement('small');value.textContent=has?format(net):'—';cell.append(num,value);cell.setAttribute('aria-label',key+': '+(has?format(net):'No graded picks recorded'));grid.appendChild(cell);
  }
- const dates=picks.map(p=>p.date).sort();document.getElementById('pp-calendar-note').textContent='Latest graded pick: '+(dates[dates.length-1]||'none')+'. October 2026 total includes a separate +187u DubClub aggregate not allocated to individual calendar days or sports. November 1 (+12.90u) and November 2 (+1.20u) are currently entered as official daily summaries, not itemized graded picks. A dash means no picks recorded. A 0.00u day may contain pending picks; pending picks are excluded from graded net units.';
+ const dates=picks.map(p=>p.date).sort();document.getElementById('pp-calendar-note').textContent='Latest listed pick: '+(dates[dates.length-1]||'none')+'. October 2026 total includes a separate +187u DubClub aggregate not allocated to individual calendar days or sports. Official daily summaries override individual net units on the same day in all-sports totals to prevent double counting. Sport columns use graded individual selections and may not yet sum to the overall total. A dash means no picks recorded. A 0.00u day may contain pending picks; pending picks are excluded from graded net units.';
 }
 document.getElementById('pp-calendar-prev').onclick=()=>{calendarMonth--;if(calendarMonth<0){calendarMonth=11;calendarYear--;}renderSharedCalendar();};
 document.getElementById('pp-calendar-next').onclick=()=>{calendarMonth++;if(calendarMonth>11){calendarMonth=0;calendarYear++;}renderSharedCalendar();};
