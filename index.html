@@ -291,6 +291,7 @@ const novemberItemizedPicks = [
   ['2026-11-04','NHL','Sharks Over 6',-130,3]
 ];
 
+const nov4Grading={"Santa Clara -16":["WIN",278,"Santa Clara 95–72 Milwaukee"],"High Point Over 147":["LOSS",-200,"High Point 63–49 Maryland Eastern Shore; 112 total"],"Radford Over 157":["LOSS",-100,"Radford 70–84 California; 154 total"],"Fairleigh Dickinson +29":["LOSS",-100,"FDU 65–99 Butler"],"Celtics -10.5":["LOSS",-300,"Boston 109–102 Milwaukee"],"Rockets -7":["LOSS",-200,"Houston 107–117 Minnesota"],"Grizzlies Under 229":["WIN",100,"Memphis 103–107 Indiana; 210 total"],"Nuggets -4":["WIN",95,"Denver 128–109 Toronto"],"Spurs -11":["LOSS",-300,"San Antonio 112–111 Dallas"],"Sharks Over 6":["WIN",231,"San Jose 2–7 LA Kings; 9 total"]};
 picks.push(...novemberItemizedPicks.map(
   ([date,sport,selection,odds,stake]) => ({
     date,
@@ -334,9 +335,13 @@ const weekendTelegramPicks = [
   ['2026-11-08','NFL','New Orleans Saints — Tyson 3+ receptions (+115) · risk 3u'],
   ['2026-11-08','NFL','Dallas Cowboys vs Indianapolis Colts — 3rd quarter OVER 9.5 (-148) · to win 3u; risk 4.44u']
 ];
-picks.push(...weekendTelegramPicks.map(([date,sport,pick])=>({
-  date,sport,pick,outcome:'PENDING',score:'Awaiting verified grading',cents:null,estimated:false
-})));
+const weekendGrading={"UCLA -2.5":["WIN",300,"UCLA 34–20 Minnesota"],"Baylor 1st half":["WIN",200,"Baylor 21–17 Iowa State at halftime"],"Brooklyn Nets":["WIN",200,"Michael Porter Jr. 25 points"],"Ole Miss 1st quarter":["LOSS",-150,"Georgia 14–0 Ole Miss Q1"],"Ole Miss 1st half":["LOSS",-150,"Georgia 28–0 Ole Miss halftime"],"Ole Miss full game":["LOSS",-150,"Georgia 42–7 Ole Miss"],"Atlanta game total":["PUSH",0,"Cincinnati 34–17 Atlanta; 51 total"],"Cleveland game total":["WIN",null,"Cleveland 22–23 New Orleans; 45 total; odds unknown"],"Chicago game total":["WIN",null,"Tampa Bay 24–27 Chicago; 51 total; odds unknown"],"Dallas Cowboys":["WIN",300,"Dallas 3 + Indianapolis 10 = 13 Q3 points"]};
+picks.push(...weekendTelegramPicks.map(([date,sport,pick])=>{
+  const grade=Object.entries(weekendGrading).find(([key])=>pick.includes(key))?.[1];
+  return {date,sport,pick,outcome:grade?.[0]||'PENDING',
+    score:grade?.[2]||'Settlement details not established',
+    cents:grade?.[1]??null,estimated:false};
+}));
 
 const historicalPicks=picks.slice();
 const AUTO_REPO='urmansince86ca-cpu/results-';
