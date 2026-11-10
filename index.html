@@ -344,6 +344,14 @@ picks.push(...weekendTelegramPicks.map(([date,sport,pick])=>{
     cents:grade?.[1]??null,estimated:false};
 }));
 
+/* NOVEMBER 9, 2026 — USER-CONFIRMED OFFICIAL PICKS.
+   Toronto -133 risk 3.99u LOSS; Buffalo first-half ML -154 to win 2u WIN.
+   Net -1.99u; do not add a separate daily summary (avoid double counting). */
+picks.push(
+  {date:'2026-11-09',sport:'NBA',pick:'Toronto Raptors moneyline (-133) · risk 3.99u',outcome:'LOSS',score:'User-confirmed LOSS · -3.99u',cents:-399,estimated:false},
+  {date:'2026-11-09',sport:'NFL',pick:'Buffalo Bills 1st half moneyline (-154) · to win 2u; risk 3.08u',outcome:'WIN',score:'User-confirmed WIN · +2.00u',cents:200,estimated:false}
+);
+
 /* Keep user-confirmed Tyson settlements prominently marked as graded. */
 picks.forEach(p=>{
  if(p.date==='2026-11-08'&&p.sport==='NFL'&&p.pick.includes('Tyson 2+ receptions')){
