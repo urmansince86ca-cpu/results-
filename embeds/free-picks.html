@@ -66,6 +66,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 .track-day small{font-size:9px}
 .track-links .btn{width:100%;min-width:100%}
 }
+
+/* Featured public matchup */
+.featured{background:#fff;border:1px solid #bdd9c7;box-shadow:0 14px 36px rgba(9,54,30,.07);overflow:hidden}
+.feature-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.feature-date{font-size:12px;font-weight:700;color:#526359}
+.feature-heading{font-size:clamp(21px,3vw,29px);letter-spacing:-.4px;margin:22px 0 6px;text-align:center}
+.feature-sub{text-align:center;margin:0 0 14px}
+.matchup{display:grid;grid-template-columns:1fr 54px 1fr;align-items:center;gap:10px;padding:20px 8px;background:#f6faf7;border:1px solid #e0ece4;border-radius:14px}
+.team{display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;min-width:0}.team img{width:94px;height:94px;object-fit:contain}.team strong{font-size:18px}.team small{font-size:11px;letter-spacing:1.5px;font-weight:900;color:#617568}.versus{text-align:center;font-size:13px;font-weight:900;color:#84968a}
+.selection-panel{margin-top:16px;background:#10271d;color:#fff;border-radius:13px;padding:22px;text-align:center}.selection-panel .eyebrow{color:#85f2b8}.selection-line{font-size:clamp(32px,6vw,52px);font-weight:950;letter-spacing:-1.5px;margin:8px 0}.selection-line span{color:#00df80}.selection-odds{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-size:13px;color:#cce4d4}.selection-odds b{color:#fff}
+@media(max-width:600px){.team img{width:70px;height:70px}.team strong{font-size:15px}.matchup{grid-template-columns:1fr 30px 1fr}.feature-heading{margin-top:16px}}
 </style>
 
 <main class="pp">
@@ -85,27 +96,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 <p class="fine">Free to join. No paid subscription required.</p>
 </section>
 
-<article class="board" data-date="2026-11-01" data-status="pending">
-<span class="badge">Event: Sunday, November 1, 2026</span>
-<p class="fine">Posted <time datetime="2026-10-27">October 27, 2026</time> · NFL · First-half spread.</p>
-<h2>NFL · Jacksonville Jaguars</h2>
-<div class="pick">Jaguars First Half −4.5 (−112)</div>
-<div class="details">
-<span>First-half spread: −4.5</span>
-<span>Odds: −112</span>
-<span class="pending">Pending</span>
+<article class="board featured" aria-label="Latest public free pick">
+<div class="feature-top"><span class="badge">Official Free Pick · NBA</span><span class="feature-date">Latest release · November 11, 2026</span></div>
+<h2 class="feature-heading">Houston Rockets vs. Golden State Warriors</h2>
+<p class="feature-sub">One matchup. One featured selection. The posted line is shown below.</p>
+<div class="matchup">
+  <div class="team"><img src="https://a.espncdn.com/i/teamlogos/nba/500/hou.png" alt="Houston Rockets logo" loading="lazy" onerror="this.style.display='none'"><strong>Houston</strong><small>ROCKETS</small></div>
+  <div class="versus">VS</div>
+  <div class="team"><img src="https://a.espncdn.com/i/teamlogos/nba/500/gs.png" alt="Golden State Warriors logo" loading="lazy" onerror="this.style.display='none'"><strong>Golden State</strong><small>WARRIORS</small></div>
 </div>
-<p class="fine">Posted line and odds may change. This selection has not been graded.</p>
-
-<div class="pick-vip">
-<a class="btn primary" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">Go VIP for 1 Day — $12.99 →</a>
-<p class="fine">24-hour All Sports VIP access. One payment. No automatic renewal.</p>
-</div>
-
-<div class="actions">
-<a class="btn" href="https://t.me/professorspicksclub" target="_blank" rel="noopener noreferrer">Follow the Free Channel →</a>
-<a class="btn" href="https://professorspicks.com/results" target="_top">View Results →</a>
-</div>
+<div class="selection-panel"><div class="eyebrow">Professor's Picks · Free Selection</div><div class="selection-line">ROCKETS <span>−6</span></div><div class="selection-odds">Against the spread <b>−105 odds</b></div></div>
+<p class="fine">Public pick as supplied November 11, 2026. Game time and final score are not yet verified. Odds may change; confirm the line at your sportsbook. Not graded.</p>
+<div class="pick-vip"><a class="btn primary" href="https://buy.stripe.com/9B6fZi3eM4k75bS3RWg7e0j" target="_top">Unlock All Sports VIP — $12.99 / Day →</a><p class="fine">24-hour All Sports VIP access. One payment. No automatic renewal.</p></div>
+<div class="actions"><a class="btn" href="https://dubclub.win/share/capper/139935/" target="_blank" rel="noopener noreferrer">Follow on DubClub →</a><a class="btn" href="https://professorspicks.com/results" target="_top">Verified Results →</a></div>
 </article>
 
 <section class="section" aria-labelledby="track-title">
@@ -145,7 +148,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 <strong class="loss">Loss · −3.15u</strong>
 </article>
 </div>
-<p class="fine">Archive total: 1 win, 2 losses and approximately −1.2565u. The two older entries retain their originally recorded units; Keita’s loss uses the posted risk of approximately 0.8065u. The pending Jaguars selection is excluded.</p>
+<p class="fine">Archive total: 1 win, 2 losses and approximately −1.2565u. The two older entries retain their originally recorded units; Keita’s loss uses the posted risk of approximately 0.8065u. The featured Rockets selection is ungraded and excluded.</p>
 </section>
 
 <section class="section" id="email-signup">
@@ -192,7 +195,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 </details>
 <details>
 <summary>Is the latest free pick completed?</summary>
-<p>Jacksonville Jaguars first half −4.5 (−112) for Sunday, November 1, 2026 is pending and excluded from completed results. Keita has been graded as a loss and moved to the archive.</p>
+<p>The featured Houston Rockets −6 (−105) selection is ungraded and excluded from completed results. Historical completed free picks remain in the archive.</p>
 </details>
 <details>
 <summary>Does the one-day VIP pass renew?</summary>
