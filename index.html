@@ -372,6 +372,8 @@ picks.forEach(p=>{
    p.outcome='WIN';p.cents=345;p.score='GRADED WIN · +3.45u · +115 risk 3u';p.estimated=false;
  }
 });
+/* Keep newest dated ledger entries first even before async GitHub sync finishes. */
+picks.sort((a,b)=>b.date.localeCompare(a.date));
 const historicalPicks=picks.slice();
 const AUTO_REPO='urmansince86ca-cpu/results-';
 const AUTO_DIR='data/picks';
