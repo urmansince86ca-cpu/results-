@@ -352,6 +352,17 @@ picks.push(
   {date:'2026-11-09',sport:'NFL',pick:'Buffalo Bills 1st half moneyline (-154) · to win 2u; risk 3.08u',outcome:'WIN',score:'User-confirmed WIN · +2.00u',cents:200,estimated:false}
 );
 
+/* NOVEMBER 10, 2026 — USER-CONFIRMED RESULTS (2-3, -2.48u).
+   Risk-based stakes; wins are profit at listed American odds.
+   No separate daily-summary pick to avoid double counting. */
+picks.push(
+  {date:'2026-11-10',sport:'NBA',pick:'Sacramento Kings +6.5 (-116) · risk 3.48u',outcome:'LOSS',score:'User-confirmed LOSS · -3.48u',cents:-348,estimated:false},
+  {date:'2026-11-10',sport:'NCAAF',pick:'Ohio vs Miami (OH) 2nd half Over 21.5 (-110) · risk 3.30u',outcome:'WIN',score:'User-confirmed WIN · +3.00u',cents:300,estimated:false},
+  {date:'2026-11-10',sport:'NBA',pick:'LA Clippers +4.5 (-117) · risk 3.00u',outcome:'LOSS',score:'User-confirmed LOSS · -3.00u',cents:-300,estimated:false},
+  {date:'2026-11-10',sport:'NCAAB',pick:'Boston College Under 129.5 · risk 2.00u (odds not supplied)',outcome:'LOSS',score:'User-confirmed LOSS · -2.00u',cents:-200,estimated:false},
+  {date:'2026-11-10',sport:'NCAAB',pick:'Ole Miss Under 149.5 (-110) · risk 3.30u',outcome:'WIN',score:'User-confirmed WIN · +3.00u',cents:300,estimated:false}
+);
+
 /* Keep user-confirmed Tyson settlements prominently marked as graded. */
 picks.forEach(p=>{
  if(p.date==='2026-11-08'&&p.sport==='NFL'&&p.pick.includes('Tyson 2+ receptions')){
