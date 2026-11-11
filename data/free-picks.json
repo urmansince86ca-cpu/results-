@@ -1,7 +1,16 @@
 {
-  "updated_at": "2026-11-09",
+  "updated_at": "2026-11-11",
   "source": "Professor's Picks public free picks; DubClub sync pending",
-  "latest": null,
+  "latest": {
+    "date": "2026-11-11",
+    "posted_date": "2026-11-11",
+    "sport": "NBA",
+    "matchup": "Houston Rockets vs Golden State Warriors",
+    "selection": "Houston Rockets -6",
+    "odds": -105,
+    "status": "PENDING",
+    "stake_units": null
+  },
   "archive": [
     {
       "date": "2026-11-01",
