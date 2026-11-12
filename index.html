@@ -203,7 +203,18 @@ header{padding:20px 24px}
 body.pp-calendar-only> *{display:none!important}body.pp-calendar-only>#pp-shared-calendar{display:block!important;margin:0;border:0;padding:14px;background:#f7f9f8;box-sizing:border-box}body.pp-calendar-only{min-height:0;animation:none;border:0!important;margin:0!important;padding:0!important}body.pp-calendar-only>#pp-shared-calendar{border-radius:0!important}
 </style><style id="pp-hide-technical-sync">#pp-auto-status{display:none!important}</style>
 <style id="pp-page-border">body{box-sizing:border-box;border:3px solid #123d2a}</style>
-</head><body><header>
+<style id="pp-rolling-performance-style">
+.pp-rolling{margin:0 0 24px;padding:22px;background:#123d2a;border:2px solid #39825a;border-radius:16px;box-shadow:0 9px 25px rgba(9,29,20,.13)}
+.pp-rolling h2{color:#fff!important;font-size:22px;text-transform:none;letter-spacing:-.4px;border:0;margin:0 0 5px;padding:0}
+.pp-rolling>p{color:#cce8d7;font-size:12px;margin:0 0 17px}
+.pp-rolling-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.pp-rolling-card{background:#fff;border:1px solid #b9d7c4;border-radius:12px;padding:19px}
+.pp-rolling-card h3{font-size:12px;color:#526359;text-transform:uppercase;letter-spacing:.7px;margin:0 0 10px}
+.pp-rolling-net{font-size:clamp(25px,3.4vw,38px);font-weight:900;line-height:1.15;color:#00864b}
+.pp-rolling-meta{display:flex;flex-wrap:wrap;gap:8px 17px;color:#45594c;font-size:12px;margin-top:12px;font-weight:700}
+.pp-rolling-note{color:#cce8d7;font-size:11px;margin-top:13px;line-height:1.5}
+@media(max-width:600px){.pp-rolling{padding:16px 12px}.pp-rolling-grid{grid-template-columns:1fr}.pp-rolling-card{padding:16px}}
+</style></head><body><header>
         <div class="logo-group">
             <a href="https://professorspicks.com" class="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500"><rect width="500" height="500" rx="100" fill="#111318"/><g fill="none" stroke="#00ff88" stroke-linecap="round" stroke-linejoin="round"><path d="M210 140h80m-65 0v70l-85 140a30 30 0 0 0 25 45h170a30 30 0 0 0 25-45l-40-66" stroke-width="32"/><circle cx="315" cy="245" r="50" stroke-width="28"/><path d="M350 280l65 65" stroke-width="36"/></g><g fill="#00ff88"><circle cx="235" cy="95" r="16"/><circle cx="265" cy="65" r="22"/></g></svg>
@@ -226,6 +237,13 @@ body.pp-calendar-only> *{display:none!important}body.pp-calendar-only>#pp-shared
 <div class="page-meta"><span>Research ledger through October 20, 2026 · Newer Zapier records sync when available</span><span>Eastern time: <time id="live-time"></time></span></div>
 <div id="pp-auto-status" role="status" aria-live="polite">Checking GitHub for automated picks…</div>
 <section hidden id="pp-auto-pending" aria-labelledby="pp-auto-pending-title"><h2 id="pp-auto-pending-title">Current pending picks</h2><div class="pp-auto-grid" id="pp-auto-pending-list"><p class="pp-auto-empty">Checking for pending picks…</p></div></section>
+<section class="pp-rolling" id="pp-rolling-performance" aria-label="Recent all-sports performance">
+<h2>Recent Performance · All Sports</h2><p>Rolling results from graded picks across every tracked sport</p>
+<div class="pp-rolling-grid">
+<div class="pp-rolling-card"><h3>Last 7 Days</h3><div class="pp-rolling-net" id="pp-roll-7-net">Calculating…</div><div class="pp-rolling-meta" id="pp-roll-7-meta"></div></div>
+<div class="pp-rolling-card"><h3>Last 30 Days</h3><div class="pp-rolling-net" id="pp-roll-30-net">Calculating…</div><div class="pp-rolling-meta" id="pp-roll-30-meta"></div></div>
+</div><div class="pp-rolling-note">Based on dated, settled ledger entries. Undated historical aggregates and pending plays are excluded. Daily summary entries replace itemized results for the same date to avoid double counting.</div>
+</section>
 <section class="summary-grid" aria-label="Available 2026 record summary"><div class="summary-box"><div class="caption">Estimated net units</div><div class="summary-number positive" id="net-summary">Calculating…</div><small>2026 website ledger + October DubClub +187.00u (separate aggregate)</small></div><div class="summary-box"><div class="caption">Win–Loss–Push</div><div class="summary-number" id="record-summary">Calculating…</div><small>Pushes excluded from win rate</small></div><div class="summary-box"><div class="caption">Win rate</div><div class="summary-number" id="rate-summary">Calculating…</div><small>Net units account for odds and stakes</small></div><div class="summary-box"><div class="caption">Recorded picks</div><div class="summary-number" id="count-summary">Calculating…</div><small>Recorded ledger entries; updates from graded picks</small></div></section>
 <details class="method-details"><summary>How results are calculated · Estimated from available records</summary><p>100 profit equals 1 unit. October 18: six NFL singles, each sized to win 1u; four wins and two losses, +1.70u net. Baltimore -3 (-118) lost 1.18u; Chargers–Chiefs Over 41.5 (-112) lost 1.12u. Raiders +5.5, Titans +6.5, Bears–Falcons Over 51.5, and Jets–Patriots Over 43.5 each won 1u. Graded from supplied final-score screenshots. Figures use the supplied per-pick profit where readable. Where profit is absent, moneyline picks use a 1-unit convention. Picks without visible odds are estimated at -110 and marked with an asterisk (*); their stated unit stakes are preserved. Newly supplied results use the recorded stake instructions. October 15: NHL 5–2, +7.08u; all seven moneyline singles sized to win 3u. Nashville lost 4.26u and Edmonton lost 3.66u. NFL 1–1, +6.19u: Emmanuel Wilson Under 14.5 rushing yards (-117), Rare to-win-10u winner (+10u, 11.70u risked); Seattle ML (-127), to-win-3u loss (−3.81u). Combined daily record 6–3, +13.27u. Outcomes supplied by the owner. October 14: owner-reported 2 wins and 1 loss; MLB Under 6.5 (+100) lost 3u, Western Kentucky (-115) won 3u and NHL Under 6.5 (-135) won 3u. Daily net +3.00u. Negative odds follow the existing to-win-3u convention (3.45u and 4.05u risked). Western Kentucky spread or moneyline was not supplied; no line or final score is inferred. October 13: the eight screenshot selections use the existing to-win-3u convention for negative odds; risk is 3.30u at -110, 3.45u at -115, 3.15u at -105 and 3.60u at -120. FIU +3 pushed. Daily record: 2 wins, 5 losses, 1 push; net −10.50u. The Rays opponent was confirmed as Cleveland. Final scores were checked against published game reports. October 12: Los Angeles Rams ML −175 was sized to win 3u (5.25u risked), for a loss of 5.25u. October 11: Green Bay +105 risks 3u for +3.15u; Chargers +3.5 (-112) is sized to win 3u, for a loss of 3.36u. The October 9–10 screenshot singles are sized to win 3u. Arizona ML, Oklahoma +6.5 and Wyoming +4.5 use 3u risked. Their profits are rounded to 0.01u per pick. UNC +3.5 was shown twice and is counted once. The existing October 8 Bruins entry is retained once. All outcomes are taken from the supplied records. Screenshot transcription and sport grouping may contain errors; this is an estimate from available records, not an independent audit of every 2026 pick. Combat picks are grouped under MMA/UFC. Historical year summaries are shown as supplied and do not include detailed imported ledgers.</p></details>
 <section aria-labelledby="sport-breakdown"><div class="section-top"><div><h2 id="sport-breakdown">2026 results by sport</h2><p>Select a sport to explore its curve and picks. W–L–P shown beneath each estimate.</p></div></div><div class="sport-tabs" id="sport-tabs" role="group" aria-label="Select sport"></div></section>
@@ -495,6 +513,24 @@ $('ledger-count').textContent='Showing '+shown.length+' of '+filtered.length+' p
 const monthNames=['All months','January','February','March','April','May','June','July','August','September','October','November','December'];monthNames.forEach((name,i)=>{const button=document.createElement('button');button.type='button';button.dataset.month=i?String(i).padStart(2,'0'):'all';button.textContent=name;button.addEventListener('click',()=>{$('month-filter').value=button.dataset.month;limit=50;render();});$('month-buttons').appendChild(button);});
 $('load-more').addEventListener('click',()=>{limit+=50;render();});$('year-filter').addEventListener('change',()=>{limit=50;render();});$('month-filter').addEventListener('change',()=>{limit=50;render();});
 function clock(){$('live-time').textContent=new Date().toLocaleTimeString('en-US',{timeZone:'America/New_York',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true,timeZoneName:'short'});}clock();setInterval(clock,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)clock();});render();loadAutoPicks();setInterval(loadAutoPicks,300000);
+function ppRenderRollingPerformance(){
+ const today=new Date();const utcToday=Date.UTC(today.getFullYear(),today.getMonth(),today.getDate());
+ [7,30].forEach(days=>{
+  const start=new Date(utcToday-(days-1)*86400000).toISOString().slice(0,10);
+  const end=new Date(utcToday).toISOString().slice(0,10);
+  const rows=picks.filter(p=>p.date>=start&&p.date<=end&&['WIN','LOSS','PUSH','SUMMARY'].includes(p.outcome));
+  const totals=stats(rows);const net=document.getElementById('pp-roll-'+days+'-net');
+  const meta=document.getElementById('pp-roll-'+days+'-meta');
+  if(!net||!meta)return;
+  net.textContent=rows.length?format(totals.net):'No graded picks';
+  net.style.color=totals.net<0?'#b42332':totals.net===0?'#806013':'#00864b';
+  const count=totals.w+totals.l;
+  const rate=count?(100*totals.w/count).toFixed(1)+'%':'—';
+  meta.textContent=totals.w+'W – '+totals.l+'L – '+totals.p+'P · Win rate '+rate;
+ });
+}
+ppRenderRollingPerformance();
+
 window.addEventListener('resize',()=>{if($('year-filter').value==='2026')drawChart(subset(selectedSport));});
 
 let calendarYear=2026,calendarMonth=10;
