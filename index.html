@@ -409,6 +409,12 @@ picks.push(
   {date:'2026-11-11',sport:'NCAAF',pick:'Ball State moneyline (+130) · risk 2.00u',outcome:'LOSS',score:'User-confirmed LOSS · -2.00u',cents:-200,estimated:false}
 );
 
+/* November 12: user-confirmed 1-3, -6.38u. */
+picks.push({"date":"2026-11-12","sport":"NBA","pick":"Detroit Pistons 1st half -5 (-110) · risk 3.30u","outcome":"LOSS","score":"Loss","cents":-330,"estimated":false},
+{"date":"2026-11-12","sport":"NBA","pick":"Philadelphia 76ers 1st half -4 (-105) · risk 2.10u","outcome":"LOSS","score":"Loss","cents":-210,"estimated":false},
+{"date":"2026-11-12","sport":"NCAAF","pick":"South Florida +3.5 (-105) · risk 2.10u","outcome":"LOSS","score":"Loss","cents":-210,"estimated":false},
+{"date":"2026-11-12","sport":"NFL","pick":"New York Giants +3.5 (-227) · risk 2.54u","outcome":"WIN","score":"Win","cents":112,"estimated":false});
+
 /* Keep user-confirmed Tyson settlements prominently marked as graded. */
 picks.forEach(p=>{
  if(p.date==='2026-11-08'&&p.sport==='NFL'&&p.pick.includes('Tyson 2+ receptions')){
