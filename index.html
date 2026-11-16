@@ -458,7 +458,8 @@ function normalizeAuto(raw){
   const id=String(readValue(raw,'pick_id','pickId','Pick Id','id')||'').trim();
   const dateValue=String(readValue(raw,'pick_date','pickDate','date','Pick Date')||'');
   const date=dateValue.slice(0,10);
-  const sport=String(readValue(raw,'sport','Sport')||'').trim().toUpperCase();
+  const rawSport=String(readValue(raw,'sport','Sport')||'').trim().toUpperCase();
+  const sport=rawSport==='UFC'?'MMA':rawSport;
   const selection=String(readValue(raw,'selection','Selection','pick')||'').trim();
   const matchup=String(readValue(raw,'matchup','Matchup')||'').trim();
   const status=String(readValue(raw,'status','Status','outcome')||'pending').trim().toLowerCase();
@@ -514,6 +515,7 @@ function renderAutoPending(){
 }
 function refreshAutoResults(){
  renderRecentPerformance();
+ ppRenderRollingPerformance();
  const tabs=document.getElementById('sport-tabs');tabs.replaceChildren();
  Object.keys(sportNames).forEach(sport=>{const st=stats(subset(sport).filter(p=>p.outcome!=='PENDING'));if(sport==='all')st.net+=DUBCLUB_OCT_2026_NET;const button=document.createElement('button');button.type='button';button.className='sport-tab';button.dataset.sport=sport;button.setAttribute('aria-pressed',String(sport===selectedSport));button.innerHTML='<span class="sport-label">'+esc(sportNames[sport])+'</span><span class="sport-total '+tone(st.net)+'">'+format(st.net)+'</span><span class="sport-record">'+st.w+'–'+st.l+'–'+st.p+' W–L–P</span>';button.addEventListener('click',()=>{selectedSport=sport;document.getElementById('year-filter').value='2026';document.getElementById('month-filter').value='all';limit=50;render();});tabs.appendChild(button);});
  const totals=stats(subset('all').filter(p=>p.outcome!=='PENDING')),header=document.getElementById('headerNetProfit');header.textContent=format(totals.net+DUBCLUB_OCT_2026_NET);header.className='bankroll-value '+tone(totals.net+DUBCLUB_OCT_2026_NET);
