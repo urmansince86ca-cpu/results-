@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12",
+  "updated_at": "2026-11-16",
   "source": "Professor's Picks public free picks; DubClub sync pending",
   "latest": null,
   "archive": [
@@ -12,7 +12,7 @@
       "odds": -105,
       "status": "WIN",
       "stake_units": null,
-      "net_units": null
+      "net_units": 3
     },
     {
       "date": "2026-11-01",
@@ -21,7 +21,7 @@
       "selection": "Jacksonville Jaguars 1H -4.5",
       "odds": -112,
       "status": "WIN",
-      "net_units": null
+      "net_units": 3
     },
     {
       "date": "2026-10-24",
