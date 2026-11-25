@@ -513,6 +513,18 @@ picks.forEach(p=>{
 });
 /* Keep newest dated ledger entries first even before async GitHub sync finishes. */
 picks.sort((a,b)=>b.date.localeCompare(a.date));
+picks.push(
+{"date":"2026-11-24","sport":"NCAAB","pick":"Marist ML (-130) · risk 1.5u","score":"Marist 58, Bryant 57","outcome":"WIN","cents":115,"estimated":false},
+{"date":"2026-11-24","sport":"NCAAB","pick":"Michigan vs Creighton Under 162.5 (-110) · risk 1.5u","score":"Creighton 99, Michigan 73 (172 total)","outcome":"LOSS","cents":-150,"estimated":false},
+{"date":"2026-11-24","sport":"NCAAB","pick":"Miami (FL) -5 (-113) · risk 1.5u","score":"TCU 84, Miami (FL) 71","outcome":"LOSS","cents":-150,"estimated":false},
+{"date":"2026-11-24","sport":"NCAAB","pick":"Saint Louis vs Grand Canyon Over 164.5 (-115) · risk 1.5u","score":"Grand Canyon 91, Saint Louis 88 (179 total)","outcome":"WIN","cents":130,"estimated":false},
+{"date":"2026-11-24","sport":"NCAAB","pick":"Clemson vs Washington Over 149.5 (-120) · risk 5u","score":"Washington 64, Clemson 63 (127 total)","outcome":"LOSS","cents":-500,"estimated":false},
+{"date":"2026-11-24","sport":"NCAAB","pick":"Miami (FL) 2H ML (-150) · risk 10u","score":"TCU 47, Miami (FL) 34 (2H)","outcome":"LOSS","cents":-1000,"estimated":false},
+{"date":"2026-11-24","sport":"NCAAB","pick":"Louisville +2.5 (-120) · risk 5u","score":"Louisville 72, Texas Tech 64","outcome":"WIN","cents":417,"estimated":false},
+{"date":"2026-11-24","sport":"NCAAB","pick":"Ohio State +2.5 (-118) · risk 3u","score":"Vanderbilt 72, Ohio State 66","outcome":"LOSS","cents":-300,"estimated":false},
+{"date":"2026-11-24","sport":"NCAAB","pick":"Kent State +10.5 (-130) · risk 5u","score":"Kent State 78, Wyoming 75 (men’s basketball)","outcome":"WIN","cents":385,"estimated":false}
+);
+picks.sort((a,b)=>b.date.localeCompare(a.date));
 const historicalPicks=picks.slice();
 const AUTO_REPO='urmansince86ca-cpu/results-';
 const AUTO_DIR='data/picks';
