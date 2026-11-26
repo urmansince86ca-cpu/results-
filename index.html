@@ -525,6 +525,10 @@ picks.push(
 {"date":"2026-11-24","sport":"NCAAB","pick":"Ohio State +2.5 (-118) · risk 3u","score":"Vanderbilt 72, Ohio State 66","outcome":"LOSS","cents":-300,"estimated":false},
 {"date":"2026-11-24","sport":"NCAAB","pick":"Kent State +10.5 (-130) · risk 5u","score":"Kent State 78, Wyoming 75 (men’s basketball)","outcome":"WIN","cents":385,"estimated":false}
 );
+picks.push(
+{"date":"2026-11-25","sport":"NBA","pick":"Phoenix Suns game Over 221.5 (+100) · risk 10u","score":"Owner-confirmed LOSS","outcome":"LOSS","cents":-1000,"estimated":false},
+{"date":"2026-11-25","sport":"NBA","pick":"Golden State Warriors vs Sacramento Kings Over 225.5 (+105) · risk 15u","score":"Owner-confirmed WIN","outcome":"WIN","cents":1575,"estimated":false}
+);
 picks.sort((a,b)=>b.date.localeCompare(a.date));
 const historicalPicks=picks.slice();
 const AUTO_REPO='urmansince86ca-cpu/results-';
