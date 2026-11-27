@@ -533,6 +533,8 @@ picks.push(
 {"date":"2026-11-26","sport":"NBA","pick":"Cleveland Cavaliers vs New York Knicks Over 217.5 (-115) · risk 2.3u","outcome":"WIN","score":"Owner-confirmed WIN","cents":200,"estimated":false}
 );
 picks.sort((a,b)=>b.date.localeCompare(a.date));
+picks.push({"date":"2026-11-26","sport":"NFL","pick":"D’Andre Swift Over 48.5 rushing yards (-115) · risk 5u","score":"65 rushing yards on 9 carries at Detroit · VIP pick posted Nov. 24","outcome":"WIN","cents":435,"estimated":false});
+picks.sort((a,b)=>b.date.localeCompare(a.date));
 const historicalPicks=picks.slice();
 const AUTO_REPO='urmansince86ca-cpu/results-';
 const AUTO_DIR='data/picks';
